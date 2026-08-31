@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Asistente de suelos por WhatsApp — CENICAÑA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    color-scheme: light dark;
+    --paper:#FFFFFF; --ink:#271D2F; --ink-soft:#4E3A5F; --ink-faint:#8B7E99;
+    --line:#EBE4F1; --accent:#8743D6; --accent-ink:#6C2FB4;
+    --grad:linear-gradient(135deg,#8743D6,#3F3FD9);
+    --grad3:linear-gradient(120deg,#8743D6 0%,#3F3FD9 52%,#6DD93F 100%);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#150F1F; --ink:#EFE9F4; --ink-soft:#BCB0C9; --ink-faint:#9286A0;
+      --line:#322842; --accent:#A97FE8; --accent-ink:#C6A9F2;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .gbar{height:5px;background:var(--grad3)}
+  .wrap{max-width:720px;margin:0 auto;padding:56px 24px 72px}
+  .brand{font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+  .brand .o{color:#6DD93F}
+  .eyebrow{margin:28px 0 6px;font-size:12px;font-weight:600;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-ink)}
+  h1{margin:0 0 10px;font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.15;font-weight:700}
+  h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  p.lead{margin:0 0 32px;color:var(--ink-soft);font-size:1.02rem;max-width:52ch}
+  .cards{display:grid;gap:16px}
+  a.card{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);
+    border-radius:14px;padding:20px 22px;transition:border-color .15s, transform .15s}
+  a.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+  a.card h2{margin:0 0 4px;font-size:1.08rem;font-weight:600;color:var(--accent-ink)}
+  a.card span{color:var(--ink-faint);font-size:.9rem}
+  footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);
+    color:var(--ink-faint);font-size:.82rem;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="gbar"></div>
+<div class="wrap">
+  <div class="brand">Evo<span class="o">·</span>Tech<span class="o">.</span></div>
+  <p class="eyebrow">Propuesta · CENICAÑA</p>
+  <h1>Asistente de <span class="g">suelos</span> por WhatsApp</h1>
+  <p class="lead">Front-end conversacional sobre las APIs de datos de CENICAÑA, con orientación de manejo de suelos. Documentos de la propuesta:</p>
+
+  <div class="cards">
+    <a class="card" href="propuesta-gerencial.html">
+      <h2>Propuesta gerencial &rarr;</h2>
+      <span>Caso de negocio · 3 planes (Mínima / Intermedia / Full) · inversión y retorno</span>
+    </a>
+    <a class="card" href="arquitectura-componentes.html">
+      <h2>Arquitectura de componentes &rarr;</h2>
+      <span>Diseño técnico · modelo C4 · grafo LangGraph · componentes por plan</span>
+    </a>
+  </div>
+
+  <footer>
+    Evoluciona Tech SAS · EvoTech — Palmira, Colombia<br>
+    comercial@evo-tech.com.co · +57 315 725 9824 · evo-tech.com.co
+  </footer>
+</div>
+</body>
+</html>
