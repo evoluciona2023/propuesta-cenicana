@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<style>:root{color-scheme:light dark}body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
 <title>Componentes del Asistente CENICAÑA</title>
@@ -146,9 +146,9 @@
 <header class="masthead">
   <div class="inner">
     <div class="brand"><span class="mk" aria-hidden="true"></span><span class="wm">Evo<i>·</i>Tech<i>.</i></span></div>
-    <p class="eyebrow">Arquitectura de componentes · Asistente de suelos · CENICAÑA</p>
+    <p class="eyebrow">Arquitectura de componentes · Asistente de Gestión Agrícola · CENICAÑA</p>
     <h1>Arquitectura de componentes</h1>
-    <p class="dek">Descomposición técnica de la v1 del asistente de suelos: un front-end de WhatsApp sobre las APIs de CENICAÑA más un RAG sobre la documentación de suelos, como un solo servicio Python sobre PostgreSQL 16. Los diagramas muestran el alcance completo (equivalente al plan Full de la propuesta gerencial); la sección 6 mapea qué entra en cada plan.</p>
+    <p class="dek">Descomposición técnica de la v1 del asistente de gestión agrícola: un front-end de WhatsApp sobre las APIs de CENICAÑA más un RAG básico sobre la documentación de manejo agronómico de la caña, como un solo servicio Python sobre PostgreSQL 16. Los diagramas muestran el alcance completo (equivalente al plan Full de la propuesta gerencial); la sección 6 mapea qué entra en cada plan.</p>
     <div class="meta-row">
       <span>Fecha&nbsp; <b>29 ago 2026</b></span>
       <span>Proveedor&nbsp; <b>Evoluciona Tech SAS · EvoTech</b></span>
@@ -267,7 +267,7 @@
           <tr><td><code>CheckpointStore</code></td><td>Persiste y restaura el estado del grafo por <code>thread_id</code></td><td>PostgreSQL</td></tr>
           <tr class="grp"><td colspan="3">Acciones</td></tr>
           <tr><td><code>CenicanaApiClient</code></td><td>Cliente REST de la API de CENICAÑA: auth usuario/contraseña, reintentos, timeout; mapea las operaciones; envía el teléfono para que la API resuelva permisos</td><td>API CENICAÑA, ResponseCache</td></tr>
-          <tr><td><code>RetrievalService</code></td><td>RAG: <code>pgvector</code> + búsqueda léxica sobre la documentación de suelos de CENICAÑA</td><td>EmbeddingClient, CorpusRepository</td></tr>
+          <tr><td><code>RetrievalService</code></td><td>RAG: <code>pgvector</code> + búsqueda léxica sobre la documentación de manejo agronómico de CENICAÑA</td><td>EmbeddingClient, CorpusRepository</td></tr>
           <tr><td><code>EmbeddingClient</code></td><td>Vectores para consulta y para ingesta</td><td>Voyage / servicio de embeddings</td></tr>
           <tr><td><code>LinkHandler</code> <span class="t-lbl">(condicional)</span></td><td>Reenvía o proxea los enlaces temporales a GEOPDF con vigencia</td><td>API CENICAÑA / almacenamiento local</td></tr>
           <tr class="grp"><td colspan="3">Apoyo</td></tr>
@@ -276,7 +276,7 @@
           <tr><td><code>AuditLog</code></td><td>Registra pregunta, respuesta, intención y operación de API usada</td><td>AuditRepository</td></tr>
           <tr><td><code>ConsentManager</code></td><td>Consentimiento; baja y borrado (Ley 1581/2012)</td><td>repositorios</td></tr>
           <tr class="grp"><td colspan="3">Fuera de línea</td></tr>
-          <tr><td><code>KnowledgeIngest</code></td><td>Script: documentación de suelos de CENICAÑA → chunks → embeddings → <code>pgvector</code></td><td>EmbeddingClient, CorpusRepository</td></tr>
+          <tr><td><code>KnowledgeIngest</code></td><td>Script: documentación de manejo agronómico de CENICAÑA → chunks → embeddings → <code>pgvector</code></td><td>EmbeddingClient, CorpusRepository</td></tr>
           <tr class="grp"><td colspan="3">Repositorios — PostgreSQL 16 + pgvector</td></tr>
           <tr><td><code>ConversationRepository</code> · <code>CorpusRepository</code> · <code>AuditRepository</code> · <code>ChannelKeyRepository</code></td><td>Acceso tipado a PostgreSQL. Sin filtro de tenant en los datos de negocio: ese ACL lo resuelve la API de CENICAÑA</td><td>PostgreSQL</td></tr>
         </tbody>
@@ -429,7 +429,7 @@
           <tr><td>Permisos por teléfono (delegados)</td><td><code>CenicanaApiClient</code> + nodo <code>no_permiso</code></td></tr>
           <tr><td>Notas de voz</td><td><code>WhatsAppAdapter</code>, <code>IntegrationHook</code>, <code>SpeechToText</code>, nodo <code>transcribe</code></td></tr>
           <tr><td>Otros canales (Telegram, web)</td><td><code>IntegrationHook</code> + núcleo neutral al canal</td></tr>
-          <tr><td>RAG de suelos con citas</td><td><code>RetrievalService</code>, <code>EmbeddingClient</code>, <code>KnowledgeIngest</code>, nodo <code>generate</code></td></tr>
+          <tr><td>RAG de manejo agronómico con citas</td><td><code>RetrievalService</code>, <code>EmbeddingClient</code>, <code>KnowledgeIngest</code>, nodo <code>generate</code></td></tr>
           <tr><td>Enlaces GEOPDF</td><td><code>LinkHandler</code> (condicional)</td></tr>
           <tr><td>Auditoría de Q&amp;A</td><td><code>AuditLog</code>, <code>AuditRepository</code>, nodo <code>finalize</code></td></tr>
           <tr><td>Memoria durable</td><td><code>CheckpointStore</code>, <code>ConversationService</code></td></tr>
@@ -469,7 +469,7 @@
 
 <footer class="end">
   <div class="wrap">
-    <p><b>Arquitectura de componentes</b> — asistente de suelos por WhatsApp para CENICAÑA · Evoluciona Tech SAS · 29 de agosto de 2026.</p>
+    <p><b>Arquitectura de componentes</b> — asistente de gestión agrícola por WhatsApp para CENICAÑA · Evoluciona Tech SAS · 29 de agosto de 2026.</p>
     <p>Documento técnico. Acompaña a la propuesta gerencial (3 planes) y al diseño técnico.</p>
     <p class="contact">Evoluciona Tech SAS · EvoTech — Palmira, Colombia · comercial@evo-tech.com.co · +57 315 725 9824 · evo-tech.com.co</p>
   </div>

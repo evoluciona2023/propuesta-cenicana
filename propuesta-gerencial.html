@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<style>:root{color-scheme:light dark}body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
-<title>Caso de Negocio — Asistente de Suelos</title>
+<title>Caso de Negocio — Asistente de Gestión Agrícola</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
@@ -165,7 +165,7 @@
   <div class="inner">
     <div class="brand"><span class="mk" aria-hidden="true"></span><span class="wm">Evo<i>·</i>Tech<i>.</i></span></div>
     <p class="eyebrow">Caso de negocio · Propuesta para CENICAÑA</p>
-    <h1>Asistente de <span class="g">suelos</span> por WhatsApp</h1>
+    <h1>Asistente de <span class="g">Gestión Agrícola</span> por WhatsApp</h1>
     <p class="dek">Propuesta gerencial en tres planes (Mínima, Intermedia y Full) con alcance y costo distintos. Documento de decisión.</p>
     <div class="meta-row">
       <span>Fecha&nbsp; <b>29 ago 2026</b></span>
@@ -180,7 +180,7 @@
 
   <section id="resumen">
     <div class="sec-head"><span class="num">01</span><h2>Resumen para dirección</h2></div>
-    <p class="lead">El mismo asistente de suelos por WhatsApp, en tres tamaños. El plan Mínimo cubre lo esencial dentro del presupuesto de referencia; cada plan superior agrega valor concreto.</p>
+    <p class="lead">El mismo asistente de gestión agrícola por WhatsApp, en tres tamaños. El plan Mínimo cubre lo esencial dentro del presupuesto de referencia; cada plan superior agrega valor concreto.</p>
 
     <div class="plans">
       <div class="plan">
@@ -190,7 +190,7 @@
         <p class="meta">soporte de estabilización: 2 semanas</p>
         <ul>
           <li>WhatsApp, solo texto</li>
-          <li>Las 3 preguntas base: info de la suerte, transitabilidad, riego</li>
+          <li>Las 3 preguntas base definidas por CENICAÑA: «información de la suerte donde estoy», «transitabilidad de la hacienda / suerte» y «¿debo regar hoy?»</li>
           <li>Permisos por teléfono + mensaje «sin permiso»</li>
           <li>Enlace al GEOPDF que genere CENICAÑA</li>
           <li>Auditoría de preguntas y respuestas</li>
@@ -208,8 +208,8 @@
         <p class="plus">+ agrega</p>
         <ul>
           <li><strong>Notas de voz</strong> (transcripción automática)</li>
-          <li><strong>Orientación de manejo de suelos</strong>: respuestas con citas de la Serie Técnica y cartillas de CENICAÑA</li>
-          <li><strong>4 preguntas adicionales</strong>, elegidas del catálogo (sección 4) y cerradas en la Fase 0</li>
+          <li><strong>Orientación de manejo agronómico de la caña</strong>: RAG básico sobre un solo dominio (Serie Técnica y cartillas de CENICAÑA), con citas</li>
+          <li><strong>Más preguntas del catálogo</strong> (sección 4): un bloque de las candidatas que resulten viables con las APIs; se cierra en la Fase 0</li>
           <li>Caché de respuestas (mejora tiempos y reduce llamadas a los servicios)</li>
           <li>Integración de logs · pruebas de carga</li>
         </ul>
@@ -225,15 +225,15 @@
         <p class="plus">+ agrega</p>
         <ul>
           <li><strong>Conector de integración</strong> (API) para llevar el asistente a Telegram y a la web</li>
-          <li><strong>8 preguntas adicionales</strong> en total, elegidas del catálogo (sección 4) y cerradas en la Fase 0</li>
-          <li><strong>Interpretación de un análisis de suelo</strong> que el usuario adjunta (pH, materia orgánica, textura, aluminio, CICE), contra una tabla de rangos construida con los agrónomos</li>
+          <li><strong>Todas las preguntas del catálogo</strong> (sección 4) que resulten viables con las APIs de CENICAÑA; el orden se cierra en la Fase 0</li>
+          <li><strong>Interpretación de un documento adjunto</strong> (por ejemplo, un análisis de laboratorio) contra tablas de referencia construidas con los agrónomos de CENICAÑA</li>
           <li>Endurecimiento completo · evaluación de calidad con set de preguntas doradas</li>
         </ul>
       </div>
     </div>
 
     <div class="note">
-      <p><strong>Recomendación: plan Intermedio.</strong> El salto de valor está en las <strong>notas de voz</strong> (clave en campo) y en la <strong>orientación de manejo de suelos</strong>. El conector para otros canales y la interpretación de análisis del plan Full se pueden agregar en una fase posterior, una vez validado el uso, sin rehacer nada.</p>
+      <p><strong>Recomendación: plan Intermedio.</strong> El salto de valor está en las <strong>notas de voz</strong> (clave en campo) y en la <strong>orientación de manejo agronómico</strong>. El conector para otros canales y la interpretación de documentos adjuntos del plan Full se pueden agregar en una fase posterior, una vez validado el uso, sin rehacer nada.</p>
     </div>
   </section>
 
@@ -252,37 +252,42 @@
     <div class="sec-head"><span class="num">03</span><h2>Cómo funciona</h2></div>
     <figure>
       <div class="board">
-        <svg viewBox="0 0 720 210" role="img" aria-label="El cultivador escribe o habla por WhatsApp; el asistente entiende la pregunta, consulta las APIs de CENICAÑA o su documentación de suelos, y responde con datos e interpretación.">
+        <svg viewBox="0 0 720 244" role="img" aria-label="El ingenio o el cultivador escribe o habla por WhatsApp; el asistente entiende la pregunta apoyado en un modelo de lenguaje, consulta las APIs de CENICAÑA o su documentación de manejo agronómico, y responde con datos e interpretación.">
           <defs>
             <marker id="fm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/>
             </marker>
           </defs>
-          <rect class="fb" x="24" y="78" width="150" height="54" rx="9"/>
-          <text class="ft" x="99" y="100" text-anchor="middle">Cultivador</text>
-          <text class="fs" x="99" y="117" text-anchor="middle">WhatsApp · texto o voz</text>
+          <rect class="fb" x="24" y="94" width="164" height="56" rx="9"/>
+          <text class="ft" x="106" y="117" text-anchor="middle">Ingenio / Cultivador</text>
+          <text class="fs" x="106" y="134" text-anchor="middle">WhatsApp · texto o voz</text>
 
-          <rect class="fa" x="248" y="66" width="180" height="78" rx="10"/>
-          <text class="ft" x="338" y="92" text-anchor="middle" style="font-weight:600">Asistente de suelos</text>
-          <text class="fs" x="338" y="110" text-anchor="middle">entiende la pregunta</text>
-          <text class="fs" x="338" y="124" text-anchor="middle">y arma la respuesta</text>
+          <rect class="fa" x="256" y="72" width="180" height="72" rx="10"/>
+          <text class="ft" x="346" y="96" text-anchor="middle" style="font-weight:600">Asistente</text>
+          <text class="fs" x="346" y="114" text-anchor="middle">entiende la pregunta</text>
+          <text class="fs" x="346" y="128" text-anchor="middle">y arma la respuesta</text>
 
-          <rect class="fb" x="512" y="34" width="184" height="52" rx="9"/>
-          <text class="ft" x="604" y="56" text-anchor="middle">APIs de CENICAÑA</text>
-          <text class="fs" x="604" y="72" text-anchor="middle">datos de la suerte</text>
+          <rect class="fb" x="256" y="176" width="180" height="50" rx="9"/>
+          <text class="ft" x="346" y="198" text-anchor="middle">Modelo de lenguaje</text>
+          <text class="fs" x="346" y="214" text-anchor="middle">interpreta y redacta</text>
 
-          <rect class="fb" x="512" y="120" width="184" height="52" rx="9"/>
-          <text class="ft" x="604" y="142" text-anchor="middle">Documentación</text>
-          <text class="fs" x="604" y="158" text-anchor="middle">de suelos de CENICAÑA</text>
+          <rect class="fb" x="516" y="46" width="180" height="52" rx="9"/>
+          <text class="ft" x="606" y="68" text-anchor="middle">APIs de CENICAÑA</text>
+          <text class="fs" x="606" y="84" text-anchor="middle">datos de la suerte</text>
 
-          <path class="fe" d="M176,105 L244,105" marker-end="url(#fm)" marker-start="url(#fm)"/>
-          <text class="fs" x="210" y="97" text-anchor="middle">pregunta</text>
-          <text class="fs" x="210" y="123" text-anchor="middle">respuesta</text>
-          <path class="fe" d="M430,92 L508,62" marker-end="url(#fm)"/>
-          <path class="fe" d="M430,120 L508,144" marker-end="url(#fm)"/>
+          <rect class="fb" x="516" y="132" width="180" height="52" rx="9"/>
+          <text class="ft" x="606" y="154" text-anchor="middle">Documentación</text>
+          <text class="fs" x="606" y="170" text-anchor="middle">de manejo agronómico</text>
+
+          <path class="fe" d="M190,120 L252,120" marker-end="url(#fm)" marker-start="url(#fm)"/>
+          <text class="fs" x="221" y="112" text-anchor="middle">pregunta</text>
+          <text class="fs" x="221" y="138" text-anchor="middle">respuesta</text>
+          <path class="fe" d="M346,144 L346,174" marker-end="url(#fm)" marker-start="url(#fm)"/>
+          <path class="fe" d="M438,98 L512,76" marker-end="url(#fm)"/>
+          <path class="fe" d="M438,128 L512,154" marker-end="url(#fm)"/>
         </svg>
       </div>
-      <figcaption>El asistente nunca inventa: solo entrega lo que las APIs de CENICAÑA o su documentación devuelven, y cita la fuente. Los permisos (qué hacienda puede ver cada usuario) los resuelve CENICAÑA con la relación de teléfonos que ya tiene. En los tres planes corre sobre la infraestructura de CENICAÑA, con el código y la documentación entregados.</figcaption>
+      <figcaption>El asistente nunca inventa: solo entrega lo que las APIs de CENICAÑA o su documentación devuelven, y cita la fuente. Un modelo de lenguaje (Claude) entiende la pregunta y redacta la respuesta en lenguaje natural; su consumo <strong>durante el desarrollo lo cubre Evoluciona Tech</strong>. Los permisos (qué hacienda puede ver cada usuario) los resuelve CENICAÑA con la relación de teléfonos que ya tiene. En los tres planes corre sobre la infraestructura de CENICAÑA, con el código y la documentación entregados.</figcaption>
     </figure>
   </section>
 
@@ -294,14 +299,14 @@
         <tbody>
           <tr><td>WhatsApp — texto</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
           <tr><td>Notas de voz (transcripción)</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td>3 preguntas base (suerte · transitabilidad · riego)</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td>3 preguntas base definidas por CENICAÑA (suerte · transitabilidad · riego)</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
           <tr><td>Permisos por teléfono + mensaje «sin permiso»</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
           <tr><td>Auditoría de preguntas y respuestas</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td>Orientación de manejo de suelos (con citas)</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td>Preguntas adicionales (del catálogo)</td><td class="c no">—</td><td class="c">4</td><td class="c">8</td></tr>
+          <tr><td>Orientación de manejo agronómico — RAG básico, un dominio (con citas)</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td>Preguntas adicionales del catálogo</td><td class="c no">—</td><td class="c">bloque</td><td class="c">todas</td></tr>
           <tr><td>Caché de respuestas</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
           <tr><td>Conector de integración (Telegram · web)</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td></tr>
-          <tr><td>Interpretación de análisis de suelo adjunto</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td></tr>
+          <tr><td>Interpretación de un documento adjunto (p. ej. análisis de laboratorio)</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td></tr>
           <tr><td>Integración de logs · pruebas de carga</td><td class="c">básico</td><td class="c">estándar</td><td class="c">completo</td></tr>
           <tr><td>Evaluación de calidad con set dorado</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td></tr>
           <tr><td>Transferencia (código · documentación · capacitación)</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">+ guías</td></tr>
@@ -309,8 +314,21 @@
         </tbody>
       </table>
     </div>
+    <h3>Preguntas base (definidas por CENICAÑA)</h3>
+    <p>Van en los <strong>tres planes</strong>, tal como las definió el área de CENICAÑA:</p>
+    <div class="twrap">
+      <table>
+        <thead><tr><th>Pregunta del usuario</th><th>La respuesta trae</th></tr></thead>
+        <tbody>
+          <tr><td>«Dame la información de la suerte donde estoy ubicado»</td><td>variedad, edad, producción anterior, necesidad de riego y lo demás que exponga la API</td></tr>
+          <tr><td>«¿Cuál es la transitabilidad de la hacienda X, suerte Y?»</td><td>% de transitabilidad + interpretación + enlace al GEOPDF</td></tr>
+          <tr><td>«¿Debo regar hoy en mi hacienda?»</td><td>qué suertes y cuánta LARA (lámina de agua rápidamente aprovechable) tienen</td></tr>
+        </tbody>
+      </table>
+    </div>
+
     <h3>Catálogo de preguntas adicionales</h3>
-    <p>Del siguiente catálogo se eligen <strong>4</strong> en el plan Intermedio y <strong>8</strong> en el plan Full. El conjunto y su orden de implementación se cierran en la Fase 0, tras verificar qué expone cada operación de la API. Cada pregunta que en la Fase 0 resulte no viable con las APIs actuales se reemplaza por otra del catálogo, sin costo adicional.</p>
+    <p>En el plan <strong>Intermedio</strong> se habilita un <strong>bloque</strong> de estas preguntas y en el plan <strong>Full</strong> <strong>todas las que resulten viables</strong> con las APIs de CENICAÑA. El conjunto y su orden de implementación se cierran en la Fase 0, tras verificar qué expone cada operación de la API. Una pregunta que en la Fase 0 resulte no viable con las APIs actuales queda pendiente hasta que CENICAÑA habilite el dato, sin costo adicional.</p>
     <div class="twrap">
       <table>
         <thead><tr><th>Pregunta candidata</th><th>Tema</th></tr></thead>
@@ -327,7 +345,7 @@
         </tbody>
       </table>
     </div>
-    <p>La interpretación de un análisis de suelo que el usuario adjunta es una capacidad aparte, incluida solo en el plan Full.</p>
+    <p>La interpretación de un documento que el usuario adjunta (por ejemplo, un análisis de laboratorio) es una capacidad aparte, incluida solo en el plan Full.</p>
   </section>
 
   <section id="inversion">
@@ -350,8 +368,11 @@
     <h3>Puesta en marcha</h3>
     <p>Sin costo. CENICAÑA ya tiene el servidor, PostgreSQL y Docker; habilitar el número de WhatsApp Business y dar de alta las cuentas de servicio son trámites sin costo de alta.</p>
 
-    <h3>Soporte continuo — opcional</h3>
-    <p>Tras la transferencia, CENICAÑA puede contratar soporte por bolsa de horas o retenedor desde <strong>COP 2 millones/mes</strong> (correctivos, ajuste del asistente, curación del corpus, nuevas preguntas). En los tres planes ya viene incluido un período de soporte de estabilización (2 semanas / 1 mes / 2 meses).</p>
+    <h3>Consumo de las APIs de IA</h3>
+    <p>El asistente usa servicios pagos por uso: el modelo de lenguaje (Claude) y la transcripción de voz. <strong>Durante el desarrollo, ese consumo lo asume Evoluciona Tech.</strong> Desde el piloto y en producción lo asume CENICAÑA, con pago directo a los proveedores; al volumen esperado (del orden de 5 000 consultas/mes) es un costo bajo, que se dimensiona en la Fase 0.</p>
+
+    <h3>Soporte</h3>
+    <p>Cada plan incluye un período de <strong>soporte de estabilización</strong> tras el paso a producción —2 semanas (Mínima), 1 mes (Intermedia) o 2 meses (Full)— para correctivos y ajuste fino del asistente. Terminado ese período, la transferencia está completa: CENICAÑA opera de forma autónoma con el código fuente, la documentación y la capacitación entregados. Esta propuesta <strong>no</strong> incluye soporte recurrente posterior.</p>
   </section>
 
   <section id="entrega">
@@ -407,7 +428,7 @@
           <tr><td>Evoluciona Tech SAS — desarrollador backend</td><td>Servicio, cliente de las APIs de CENICAÑA, conector, despliegue</td></tr>
           <tr><td>CENICAÑA — responsable de las APIs</td><td>Documentación y ajustes de las APIs, usuario técnico, ambientes</td></tr>
           <tr><td>CENICAÑA — aprobador de seguridad y datos</td><td>Autorización de egreso de datos, política de auditoría y retención</td></tr>
-          <tr><td>CENICAÑA — agrónomo / contenido</td><td>Selección y curación de la documentación de suelos, validación de respuestas y (plan Full) tabla de rangos de interpretación</td></tr>
+          <tr><td>CENICAÑA — agrónomo / contenido</td><td>Selección y curación de la documentación de manejo agronómico, validación de respuestas y (plan Full) tablas de referencia para interpretación</td></tr>
           <tr><td>CENICAÑA — operación (TI)</td><td>Infraestructura, red, integración de logs y respaldos</td></tr>
         </tbody>
       </table>
@@ -419,7 +440,7 @@
     <ul>
       <li>CENICAÑA provee servidor (ya disponible), acceso de red para el webhook y para alcanzar las APIs de CENICAÑA, y habilita el número de WhatsApp Business.</li>
       <li>Las tres operaciones base de la API existen; los ajustes de parámetros y de estructura de respuesta son responsabilidad de CENICAÑA.</li>
-      <li>CENICAÑA define y entrega la documentación de suelos para el asistente (planes Intermedia y Full).</li>
+      <li>CENICAÑA define y entrega la documentación de manejo agronómico para el asistente (planes Intermedia y Full).</li>
       <li>Se acuerda en la Fase 0 la política de egreso de datos a servicios externos y la de auditoría y retención.</li>
       <li>Los valores de construcción son cerrados y <strong>libres de impuestos</strong>.</li>
       <li>Vigencia de la oferta: 60 días. El cronograma se confirma al cierre de la Fase 0.</li>
@@ -439,7 +460,7 @@
 
 <footer class="end">
   <div class="wrap">
-    <p><b>Asistente de suelos por WhatsApp</b> — caso de negocio de Evoluciona Tech SAS para CENICAÑA · 29 de agosto de 2026.</p>
+    <p><b>Asistente de Gestión Agrícola por WhatsApp</b> — caso de negocio de Evoluciona Tech SAS para CENICAÑA · 29 de agosto de 2026.</p>
     <p>Documento de decisión. Los valores de construcción son cerrados y libres de impuestos; el cronograma se acuerda al cierre de la Fase 0. Acompaña a la propuesta técnica y a la arquitectura de componentes.</p>
     <p class="contact">Evoluciona Tech SAS · EvoTech — Palmira, Colombia · comercial@evo-tech.com.co · +57 315 725 9824 · evo-tech.com.co</p>
   </div>
