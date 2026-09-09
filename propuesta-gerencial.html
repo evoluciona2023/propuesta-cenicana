@@ -94,7 +94,7 @@
 
   /* plan cards */
   .plans{display:grid;gap:1.1rem;grid-template-columns:1fr;margin:1.7rem 0}
-  @media (min-width:760px){.plans{grid-template-columns:repeat(3,1fr)}}
+  @media (min-width:720px){.plans{grid-template-columns:repeat(2,1fr)}}
   .plan{position:relative;background:var(--paper-raised);border:1px solid var(--line);border-radius:16px;padding:1.5rem 1.4rem 1.6rem;box-shadow:var(--shadow);display:flex;flex-direction:column}
   .plan.rec{border:2px solid var(--accent);background:
     linear-gradient(var(--paper-raised),var(--paper-raised)) padding-box,
@@ -156,7 +156,7 @@
     .gbar,.plan.rec::before{-webkit-print-color-adjust:exact;print-color-adjust:exact}
     body{background:#fff;color:#000}
     .callout,.plan,.twrap,.board{box-shadow:none}
-    section{break-inside:avoid}.plans{grid-template-columns:repeat(3,1fr)}
+    section{break-inside:avoid}.plans{grid-template-columns:repeat(2,1fr)}
   }
 </style>
 
@@ -166,7 +166,7 @@
     <div class="brand"><span class="mk" aria-hidden="true"></span><span class="wm">Evo<i>·</i>Tech<i>.</i></span></div>
     <p class="eyebrow">Caso de negocio · Propuesta para CENICAÑA</p>
     <h1>Asistente de <span class="g">Gestión Agrícola</span> por WhatsApp</h1>
-    <p class="dek">Propuesta gerencial en tres planes (Mínima, Intermedia y Full) con alcance y costo distintos. Documento de decisión.</p>
+    <p class="dek">Propuesta gerencial en cuatro planes (Mínima, Intermedia, Intermedia Plus y Full) con alcance y costo distintos. Documento de decisión.</p>
     <div class="meta-row">
       <span>Fecha&nbsp; <b>29 ago 2026</b></span>
       <span>Proveedor&nbsp; <b>Evoluciona Tech SAS · EvoTech</b></span>
@@ -180,7 +180,7 @@
 
   <section id="resumen">
     <div class="sec-head"><span class="num">01</span><h2>Resumen para dirección</h2></div>
-    <p class="lead">El mismo asistente de gestión agrícola por WhatsApp, en tres tamaños. El plan Mínimo cubre lo esencial dentro del presupuesto de referencia; cada plan superior agrega valor concreto.</p>
+    <p class="lead">El mismo asistente de gestión agrícola por WhatsApp, en cuatro tamaños. El plan Mínimo cubre lo esencial dentro del presupuesto de referencia; cada plan superior agrega valor concreto.</p>
 
     <div class="plans">
       <div class="plan">
@@ -197,11 +197,11 @@
           <li>Despliegue en la infraestructura de CENICAÑA + transferencia</li>
         </ul>
       </div>
-      <div class="plan rec">
+      <div class="plan">
         <p class="tag">Plan B</p>
         <h3>Intermedia</h3>
-        <p class="price">COP 19.000.000<small>libre de impuestos</small></p>
-        <p class="meta">soporte de estabilización: 1 mes</p>
+        <p class="price">COP 15.000.000<small>libre de impuestos</small></p>
+        <p class="meta">soporte de estabilización: 3 semanas</p>
         <ul>
           <li>Todo lo del plan Mínimo</li>
         </ul>
@@ -210,30 +210,46 @@
           <li><strong>Notas de voz</strong> (transcripción automática)</li>
           <li><strong>Orientación de manejo agronómico de la caña</strong>: RAG básico sobre un solo dominio (Serie Técnica y cartillas de CENICAÑA), con citas</li>
           <li><strong>Más preguntas del catálogo</strong> (sección 4): un bloque de las candidatas que resulten viables con las APIs; se cierra en la Fase 0</li>
-          <li>Caché de respuestas (mejora tiempos y reduce llamadas a los servicios)</li>
-          <li>Integración de logs · pruebas de carga</li>
+          <li>Logs de operación básicos, en el formato que consume la herramienta de CENICAÑA</li>
+        </ul>
+      </div>
+      <div class="plan rec">
+        <p class="tag">Plan C</p>
+        <h3>Intermedia Plus</h3>
+        <p class="price">COP 17.000.000<small>libre de impuestos</small></p>
+        <p class="meta">soporte de estabilización: 1 mes</p>
+        <ul>
+          <li>Todo lo del plan Intermedio</li>
+        </ul>
+        <p class="plus">+ agrega</p>
+        <ul>
+          <li><strong>Sistema de ponderación de contexto</strong>: antes de redactar, el asistente puntúa y pondera lo que recuperó (datos de la API + documentación) por relevancia y frescura, y decide con qué responde o si pide precisión — menos respuestas imprecisas</li>
+          <li><strong>Logs con analítica para afinamiento</strong>: los registros de preguntas y respuestas alimentan un ciclo de ajuste del router de intención, la ponderación y el corpus; incluye un tablero simple de métricas de uso</li>
+          <li>Pruebas de carga</li>
         </ul>
       </div>
       <div class="plan">
-        <p class="tag">Plan C</p>
+        <p class="tag">Plan D</p>
         <h3>Full</h3>
         <p class="price">COP 32.000.000<small>libre de impuestos</small></p>
         <p class="meta">soporte de estabilización: 2 meses</p>
         <ul>
-          <li>Todo lo del plan Intermedio</li>
+          <li>Todo lo del plan Intermedio Plus</li>
         </ul>
         <p class="plus">+ agrega</p>
         <ul>
           <li><strong>Conector de integración</strong> (API) para llevar el asistente a Telegram y a la web</li>
           <li><strong>Todas las preguntas del catálogo</strong> (sección 4) que resulten viables con las APIs de CENICAÑA; el orden se cierra en la Fase 0</li>
           <li><strong>Interpretación de un documento adjunto</strong> (por ejemplo, un análisis de laboratorio) contra tablas de referencia construidas con los agrónomos de CENICAÑA</li>
+          <li><strong>Caché de respuestas</strong> (mejora tiempos y reduce llamadas a los servicios)</li>
           <li>Endurecimiento completo · evaluación de calidad con set de preguntas doradas</li>
         </ul>
       </div>
     </div>
 
     <div class="note">
-      <p><strong>Recomendación: plan Intermedio.</strong> El salto de valor está en las <strong>notas de voz</strong> (clave en campo) y en la <strong>orientación de manejo agronómico</strong>. El conector para otros canales y la interpretación de documentos adjuntos del plan Full se pueden agregar en una fase posterior, una vez validado el uso, sin rehacer nada.</p>
+      <p><strong>Recomendación: plan Intermedio Plus (COP 17.000.000).</strong> El salto de valor está en las <strong>notas de voz</strong> (clave en campo), la <strong>orientación de manejo agronómico</strong> y —frente al plan Intermedio— el <strong>sistema de ponderación de contexto</strong> y la <strong>analítica de logs para afinar el asistente</strong>.</p>
+      <p>El plan <strong>Intermedio (COP 15.000.000)</strong> es la misma base conversacional pero con logs muy básicos y sin la ponderación de contexto ni la analítica de afinamiento. El conector para otros canales, la caché y la interpretación de documentos adjuntos del plan Full se pueden agregar en una fase posterior, sin rehacer nada.</p>
     </div>
   </section>
 
@@ -287,35 +303,44 @@
           <path class="fe" d="M438,128 L512,154" marker-end="url(#fm)"/>
         </svg>
       </div>
-      <figcaption>El asistente nunca inventa: solo entrega lo que las APIs de CENICAÑA o su documentación devuelven, y cita la fuente. Un modelo de lenguaje (Claude) entiende la pregunta y redacta la respuesta en lenguaje natural; su consumo <strong>durante el desarrollo lo cubre Evoluciona Tech</strong>. Los permisos (qué hacienda puede ver cada usuario) los resuelve CENICAÑA con la relación de teléfonos que ya tiene. En los tres planes corre sobre la infraestructura de CENICAÑA, con el código y la documentación entregados.</figcaption>
+      <figcaption>El asistente nunca inventa: solo entrega lo que las APIs de CENICAÑA o su documentación devuelven, y cita la fuente. Un modelo de lenguaje (Claude) entiende la pregunta y redacta la respuesta en lenguaje natural; su consumo <strong>durante el desarrollo lo cubre Evoluciona Tech</strong>. Los permisos (qué hacienda puede ver cada usuario) los resuelve CENICAÑA con la relación de teléfonos que ya tiene. En todos los planes corre sobre la infraestructura de CENICAÑA, con el código y la documentación entregados.</figcaption>
     </figure>
+
+    <h3>Ponderación de contexto <span class="pill">planes Intermedio Plus y Full</span></h3>
+    <p>Antes de redactar, el asistente <strong>puntúa y pondera</strong> lo que recuperó —datos de la API y fragmentos de la documentación— por relevancia, frescura y coincidencia con la pregunta. Con ese puntaje decide qué usa, en qué orden y si tiene base suficiente para responder o debe pedir que reformulen. Baja la tasa de respuestas imprecisas o fuera de contexto. En los planes Mínima e Intermedia el asistente responde con lo que devuelven la API y el corpus, sin esta capa.</p>
+
+    <h3>Logs y afinamiento</h3>
+    <p>Todos los planes emiten <strong>logs de operación</strong> en el formato que consume la herramienta de CENICAÑA. Desde el plan <strong>Intermedio Plus</strong>, además, esos registros de preguntas y respuestas se revisan periódicamente para <strong>afinar</strong> el asistente: ajustar el router de intención, la ponderación de contexto y el corpus del RAG. Incluye un tablero simple de métricas de uso (volumen, temas frecuentes, tasa de «no sé»).</p>
   </section>
 
   <section id="alcance">
     <div class="sec-head"><span class="num">04</span><h2>Comparación de alcance</h2></div>
     <div class="twrap">
       <table>
-        <thead><tr><th>Capacidad</th><th class="c">Mínima</th><th class="c">Intermedia</th><th class="c">Full</th></tr></thead>
+        <thead><tr><th>Capacidad</th><th class="c">Mínima</th><th class="c">Intermedia</th><th class="c">Intermedia&nbsp;Plus</th><th class="c">Full</th></tr></thead>
         <tbody>
-          <tr><td>WhatsApp — texto</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td>Notas de voz (transcripción)</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td>3 preguntas base definidas por CENICAÑA (suerte · transitabilidad · riego)</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td>Permisos por teléfono + mensaje «sin permiso»</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td>Auditoría de preguntas y respuestas</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td>Orientación de manejo agronómico — RAG básico, un dominio (con citas)</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td>Preguntas adicionales del catálogo</td><td class="c no">—</td><td class="c">bloque</td><td class="c">todas</td></tr>
-          <tr><td>Caché de respuestas</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td>Conector de integración (Telegram · web)</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td></tr>
-          <tr><td>Interpretación de un documento adjunto (p. ej. análisis de laboratorio)</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td></tr>
-          <tr><td>Integración de logs · pruebas de carga</td><td class="c">básico</td><td class="c">estándar</td><td class="c">completo</td></tr>
-          <tr><td>Evaluación de calidad con set dorado</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td></tr>
-          <tr><td>Transferencia (código · documentación · capacitación)</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">+ guías</td></tr>
-          <tr><td>Soporte de estabilización incluido</td><td class="c">2 semanas</td><td class="c">1 mes</td><td class="c">2 meses</td></tr>
+          <tr><td>WhatsApp — texto</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td>Notas de voz (transcripción)</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td>3 preguntas base definidas por CENICAÑA (suerte · transitabilidad · riego)</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td>Permisos por teléfono + mensaje «sin permiso»</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td>Auditoría de preguntas y respuestas</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td>Orientación de manejo agronómico — RAG básico, un dominio (con citas)</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td>Preguntas adicionales del catálogo</td><td class="c no">—</td><td class="c">bloque</td><td class="c">bloque</td><td class="c">todas</td></tr>
+          <tr><td>Ponderación de contexto antes de responder</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td>Logs de operación</td><td class="c">básico</td><td class="c">básico</td><td class="c">+ analítica</td><td class="c">completo</td></tr>
+          <tr><td>Analítica de uso para afinamiento (tablero + ciclo de ajuste)</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td>Pruebas de carga</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td>Caché de respuestas</td><td class="c no">—</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td></tr>
+          <tr><td>Conector de integración (Telegram · web)</td><td class="c no">—</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td></tr>
+          <tr><td>Interpretación de un documento adjunto (p. ej. análisis de laboratorio)</td><td class="c no">—</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td></tr>
+          <tr><td>Evaluación de calidad con set dorado</td><td class="c no">—</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td></tr>
+          <tr><td>Transferencia (código · documentación · capacitación)</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">+ guías</td></tr>
+          <tr><td>Soporte de estabilización incluido</td><td class="c">2 semanas</td><td class="c">3 semanas</td><td class="c">1 mes</td><td class="c">2 meses</td></tr>
         </tbody>
       </table>
     </div>
     <h3>Preguntas base (definidas por CENICAÑA)</h3>
-    <p>Van en los <strong>tres planes</strong>, tal como las definió el área de CENICAÑA:</p>
+    <p>Van en los <strong>cuatro planes</strong>, tal como las definió el área de CENICAÑA:</p>
     <div class="twrap">
       <table>
         <thead><tr><th>Pregunta del usuario</th><th>La respuesta trae</th></tr></thead>
@@ -328,7 +353,7 @@
     </div>
 
     <h3>Catálogo de preguntas adicionales</h3>
-    <p>En el plan <strong>Intermedio</strong> se habilita un <strong>bloque</strong> de estas preguntas y en el plan <strong>Full</strong> <strong>todas las que resulten viables</strong> con las APIs de CENICAÑA. El conjunto y su orden de implementación se cierran en la Fase 0, tras verificar qué expone cada operación de la API. Una pregunta que en la Fase 0 resulte no viable con las APIs actuales queda pendiente hasta que CENICAÑA habilite el dato, sin costo adicional.</p>
+    <p>En los planes <strong>Intermedio</strong> e <strong>Intermedio Plus</strong> se habilita un <strong>bloque</strong> de estas preguntas y en el plan <strong>Full</strong> <strong>todas las que resulten viables</strong> con las APIs de CENICAÑA. El conjunto y su orden de implementación se cierran en la Fase 0, tras verificar qué expone cada operación de la API. Una pregunta que en la Fase 0 resulte no viable con las APIs actuales queda pendiente hasta que CENICAÑA habilite el dato, sin costo adicional.</p>
     <div class="twrap">
       <table>
         <thead><tr><th>Pregunta candidata</th><th>Tema</th></tr></thead>
@@ -358,7 +383,8 @@
         <thead><tr><th>Plan</th><th class="num">Valor total (COP, libre de impuestos)</th></tr></thead>
         <tbody>
           <tr><td>Mínima</td><td class="num">11 000 000</td></tr>
-          <tr class="total-row"><td>Intermedia · recomendada</td><td class="num">19 000 000</td></tr>
+          <tr><td>Intermedia</td><td class="num">15 000 000</td></tr>
+          <tr class="total-row"><td>Intermedia Plus · recomendada</td><td class="num">17 000 000</td></tr>
           <tr><td>Full</td><td class="num">32 000 000</td></tr>
         </tbody>
       </table>
@@ -372,12 +398,12 @@
     <p>El asistente usa servicios pagos por uso: el modelo de lenguaje (Claude) y la transcripción de voz. <strong>Durante el desarrollo, ese consumo lo asume Evoluciona Tech.</strong> Desde el piloto y en producción lo asume CENICAÑA, con pago directo a los proveedores; al volumen esperado (del orden de 5 000 consultas/mes) es un costo bajo, que se dimensiona en la Fase 0.</p>
 
     <h3>Soporte</h3>
-    <p>Cada plan incluye un período de <strong>soporte de estabilización</strong> tras el paso a producción —2 semanas (Mínima), 1 mes (Intermedia) o 2 meses (Full)— para correctivos y ajuste fino del asistente. Terminado ese período, la transferencia está completa: CENICAÑA opera de forma autónoma con el código fuente, la documentación y la capacitación entregados. Esta propuesta <strong>no</strong> incluye soporte recurrente posterior.</p>
+    <p>Cada plan incluye un período de <strong>soporte de estabilización</strong> tras el paso a producción —2 semanas (Mínima), 3 semanas (Intermedia), 1 mes (Intermedia Plus) o 2 meses (Full)— para correctivos y ajuste fino del asistente. Terminado ese período, la transferencia está completa: CENICAÑA opera de forma autónoma con el código fuente, la documentación y la capacitación entregados. Esta propuesta <strong>no</strong> incluye soporte recurrente posterior.</p>
   </section>
 
   <section id="entrega">
     <div class="sec-head"><span class="num">06</span><h2>Cómo se entrega</h2></div>
-    <p><strong>Modelo llave en mano + transferencia</strong> en los tres planes. CENICAÑA recibe el sistema desplegado y operando en su infraestructura, el código fuente en propiedad, la documentación y la capacitación. Después opera de forma autónoma.</p>
+    <p><strong>Modelo llave en mano + transferencia</strong> en los cuatro planes. CENICAÑA recibe el sistema desplegado y operando en su infraestructura, el código fuente en propiedad, la documentación y la capacitación. Después opera de forma autónoma.</p>
     <div class="timeline">
       <div class="row"><span class="m">Fase 0</span><div class="bar"><b>Descubrimiento y diseño fino</b><span>Sesión técnica con CENICAÑA · mapeo de las APIs de CENICAÑA · selección de documentos · definición del conjunto de preguntas.</span></div></div>
       <div class="row"><span class="m">Fase 1</span><div class="bar"><b>Piloto funcional</b><span>El asistente con el alcance del plan elegido, funcionando en el ambiente de pruebas de CENICAÑA. Ajustes tras el piloto.</span></div></div>
@@ -400,7 +426,7 @@
         </tbody>
       </table>
     </div>
-    <p><strong>Recuperación de la inversión:</strong> valorando el tiempo técnico liberado a un costo cargado modesto, el plan Mínimo se recupera en el orden de <strong>4–8 meses</strong>, el Intermedio en <strong>6–12 meses</strong> y el Full en <strong>10–18 meses</strong>.</p>
+    <p><strong>Recuperación de la inversión:</strong> valorando el tiempo técnico liberado a un costo cargado modesto, el plan Mínimo se recupera en el orden de <strong>4–8 meses</strong>, los planes Intermedios en <strong>5–10 meses</strong> y el Full en <strong>10–18 meses</strong>.</p>
   </section>
 
   <section id="riesgos">
@@ -450,7 +476,7 @@
   <section id="decision">
     <div class="sec-head"><span class="num">11</span><h2>Próximo paso</h2></div>
     <div class="note">
-      <p><strong>1.</strong> Elegir plan (Mínima, Intermedia o Full).</p>
+      <p><strong>1.</strong> Elegir plan (Mínima, Intermedia, Intermedia Plus o Full).</p>
       <p><strong>2.</strong> Agendar la sesión técnica de 45 minutos con el responsable de las APIs, el aprobador de seguridad y datos, y la persona que operará la solución.</p>
       <p><strong>3.</strong> Con eso, Evoluciona Tech SAS entrega el plan de trabajo detallado de la Fase 0 y el contrato.</p>
     </div>

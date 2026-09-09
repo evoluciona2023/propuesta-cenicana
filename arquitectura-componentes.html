@@ -170,7 +170,7 @@
   <section id="arq">
     <div class="sec-head"><span class="num">01</span><h2>Arquitectura</h2></div>
     <p>Un solo contenedor Python (FastAPI + LangGraph) sobre el PostgreSQL que CENICAÑA ya opera. El webhook de WhatsApp entra por HTTPS a través del WAF; las llamadas a las APIs de CENICAÑA salen por la red interna (VPN / IP en allowlist); Claude y Whisper se alcanzan por firewall/WAF saliente.</p>
-    <div class="note"><p>El diagrama muestra la <strong>v1 completa</strong> (equivale al <strong>plan Full</strong> de la propuesta gerencial). En el plan <strong>Mínima</strong> el servicio solo tiene el adaptador de WhatsApp, el grafo y el cliente de la API de CENICAÑA; el plan <strong>Intermedia</strong> añade la transcripción de voz y el RAG; el plan <strong>Full</strong> añade el conector de integración y el motor de interpretación de análisis. Ver la <a href="#planes">sección 6</a>.</p></div>
+    <div class="note"><p>El diagrama muestra la <strong>v1 completa</strong> (equivale al <strong>plan Full</strong> de la propuesta gerencial). En el plan <strong>Mínima</strong> el servicio solo tiene el adaptador de WhatsApp, el grafo y el cliente de la API de CENICAÑA; el plan <strong>Intermedia</strong> añade la transcripción de voz y el RAG; el plan <strong>Intermedia Plus</strong> añade la ponderación de contexto (<code>ContextRanker</code>) y la analítica de afinamiento (<code>UsageAnalytics</code>); el plan <strong>Full</strong> añade el conector de integración, la caché y el motor de interpretación de documentos adjuntos. Ver la <a href="#planes">sección 6</a>.</p></div>
 
     <figure>
       <div class="board">
@@ -269,11 +269,13 @@
           <tr><td><code>CenicanaApiClient</code></td><td>Cliente REST de la API de CENICAÑA: auth usuario/contraseña, reintentos, timeout; mapea las operaciones; envía el teléfono para que la API resuelva permisos</td><td>API CENICAÑA, ResponseCache</td></tr>
           <tr><td><code>RetrievalService</code></td><td>RAG: <code>pgvector</code> + búsqueda léxica sobre la documentación de manejo agronómico de CENICAÑA</td><td>EmbeddingClient, CorpusRepository</td></tr>
           <tr><td><code>EmbeddingClient</code></td><td>Vectores para consulta y para ingesta</td><td>Voyage / servicio de embeddings</td></tr>
+          <tr><td><code>ContextRanker</code> <span class="t-lbl">(planes Intermedia&nbsp;Plus y Full)</span></td><td>Antes de <code>generate</code>: puntúa y pondera los fragmentos recuperados (API + RAG) por relevancia, frescura y cobertura de la pregunta; decide qué entra al prompt y si hay base suficiente para responder</td><td>RetrievalService, CenicanaApiClient</td></tr>
           <tr><td><code>LinkHandler</code> <span class="t-lbl">(condicional)</span></td><td>Reenvía o proxea los enlaces temporales a GEOPDF con vigencia</td><td>API CENICAÑA / almacenamiento local</td></tr>
           <tr class="grp"><td colspan="3">Apoyo</td></tr>
           <tr><td><code>LlmGateway</code></td><td>Envuelve <code>langchain-anthropic</code>; reintentos, fallback, conteo de tokens</td><td>Claude API</td></tr>
-          <tr><td><code>ResponseCache</code></td><td>Caché de corta duración sobre respuestas de la API</td><td>PostgreSQL</td></tr>
+          <tr><td><code>ResponseCache</code> <span class="t-lbl">(plan Full)</span></td><td>Caché de corta duración sobre respuestas de la API</td><td>PostgreSQL</td></tr>
           <tr><td><code>AuditLog</code></td><td>Registra pregunta, respuesta, intención y operación de API usada</td><td>AuditRepository</td></tr>
+          <tr><td><code>UsageAnalytics</code> <span class="t-lbl">(planes Intermedia&nbsp;Plus y Full)</span></td><td>Tablero de métricas de uso (volumen, temas, tasa de «no sé») y ciclo de afinamiento: revisa los logs de preguntas y respuestas para ajustar el router, el <code>ContextRanker</code> y el corpus</td><td>AuditRepository</td></tr>
           <tr><td><code>ConsentManager</code></td><td>Consentimiento; baja y borrado (Ley 1581/2012)</td><td>repositorios</td></tr>
           <tr class="grp"><td colspan="3">Fuera de línea</td></tr>
           <tr><td><code>KnowledgeIngest</code></td><td>Script: documentación de manejo agronómico de CENICAÑA → chunks → embeddings → <code>pgvector</code></td><td>EmbeddingClient, CorpusRepository</td></tr>
@@ -286,7 +288,7 @@
 
   <section id="grafo">
     <div class="sec-head"><span class="num">03</span><h2>Grafo LangGraph (v1)</h2></div>
-    <p>El turno es un grafo de estado. Cinco intenciones salen del <code>router</code>; todo lo que produce respuesta converge en <code>generate → guardrails → finalize</code>. La intención <code>conocimiento</code> (rama <code>retrieve</code>) y el nodo <code>transcribe</code> existen desde el <strong>plan Intermedio</strong>; en el plan Mínimo el grafo solo enruta a <code>call_api</code> y <code>fallback</code>.</p>
+    <p>El turno es un grafo de estado. Cinco intenciones salen del <code>router</code>; todo lo que produce respuesta converge en <code>generate → guardrails → finalize</code>. La intención <code>conocimiento</code> (rama <code>retrieve</code>) y el nodo <code>transcribe</code> existen desde el <strong>plan Intermedio</strong>; en el plan Mínimo el grafo solo enruta a <code>call_api</code> y <code>fallback</code>. Desde el <strong>plan Intermedio Plus</strong> se intercala un nodo <code>rank_context</code> (ponderación) antes de <code>generate</code>.</p>
 
     <figure>
       <div class="board">
@@ -442,27 +444,29 @@
 
   <section id="planes">
     <div class="sec-head"><span class="num">06</span><h2>Componentes por plan</h2></div>
-    <p>Alineación con los tres planes de la propuesta gerencial. Cada plan superior es un superconjunto del anterior; el núcleo (grafo, servicio de conversación, checkpointer) y los repositorios base están en los tres.</p>
+    <p>Alineación con los cuatro planes de la propuesta gerencial. Cada plan superior es un superconjunto del anterior; el núcleo (grafo, servicio de conversación, checkpointer) y los repositorios base están en los cuatro.</p>
     <div class="twrap">
       <table>
-        <thead><tr><th>Componente</th><th class="c">Mínima</th><th class="c">Intermedia</th><th class="c">Full</th></tr></thead>
+        <thead><tr><th>Componente</th><th class="c">Mínima</th><th class="c">Intermedia</th><th class="c">Intermedia&nbsp;Plus</th><th class="c">Full</th></tr></thead>
         <tbody>
-          <tr><td><code>WhatsAppAdapter</code> · <code>IdempotencyStore</code></td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td><code>ConversationService</code> · <code>AgentGraph</code> · <code>CheckpointStore</code></td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td><code>CenicanaApiClient</code> · <code>LinkHandler</code></td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td><code>LlmGateway</code> · <code>AuditLog</code> · <code>ConsentManager</code></td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td><code>ConversationRepository</code> · <code>AuditRepository</code></td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td><code>SpeechToText</code> + nodo <code>transcribe</code> (notas de voz)</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td><code>RetrievalService</code> · <code>EmbeddingClient</code> · <code>KnowledgeIngest</code> · <code>CorpusRepository</code> (RAG)</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td><code>ResponseCache</code></td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
-          <tr><td>Preguntas adicionales del catálogo</td><td class="c no">—</td><td class="c">4</td><td class="c">8</td></tr>
-          <tr><td><code>IntegrationHook</code> · <code>ChannelKeyRepository</code> (conector Telegram/web)</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td></tr>
-          <tr><td><code>SoilAnalysisInterpreter</code> · <code>DocumentExtractor</code> + tabla de rangos (interpretación de análisis adjunto)</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td></tr>
-          <tr><td>Evaluación con set dorado · endurecimiento completo</td><td class="c">básico</td><td class="c">estándar</td><td class="c yes">completo</td></tr>
+          <tr><td><code>WhatsAppAdapter</code> · <code>IdempotencyStore</code></td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td><code>ConversationService</code> · <code>AgentGraph</code> · <code>CheckpointStore</code></td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td><code>CenicanaApiClient</code> · <code>LinkHandler</code></td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td><code>LlmGateway</code> · <code>AuditLog</code> · <code>ConsentManager</code></td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td><code>ConversationRepository</code> · <code>AuditRepository</code></td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td><code>SpeechToText</code> + nodo <code>transcribe</code> (notas de voz)</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td><code>RetrievalService</code> · <code>EmbeddingClient</code> · <code>KnowledgeIngest</code> · <code>CorpusRepository</code> (RAG)</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td>Preguntas adicionales del catálogo</td><td class="c no">—</td><td class="c">bloque</td><td class="c">bloque</td><td class="c">todas</td></tr>
+          <tr><td><code>ContextRanker</code> + nodo <code>rank_context</code> (ponderación antes de <code>generate</code>)</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td><code>UsageAnalytics</code> (tablero de uso + ciclo de afinamiento) · pruebas de carga</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td><td class="c yes">Sí</td></tr>
+          <tr><td><code>ResponseCache</code></td><td class="c no">—</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td></tr>
+          <tr><td><code>IntegrationHook</code> · <code>ChannelKeyRepository</code> (conector Telegram/web)</td><td class="c no">—</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td></tr>
+          <tr><td><code>SoilAnalysisInterpreter</code> · <code>DocumentExtractor</code> + tabla de rangos (interpretación de documento adjunto)</td><td class="c no">—</td><td class="c no">—</td><td class="c no">—</td><td class="c yes">Sí</td></tr>
+          <tr><td>Evaluación con set dorado · endurecimiento completo</td><td class="c">básico</td><td class="c">básico</td><td class="c">estándar</td><td class="c yes">completo</td></tr>
         </tbody>
       </table>
     </div>
-    <p><code>SoilAnalysisInterpreter</code> y <code>DocumentExtractor</code> son componentes del plan Full que no aparecen en los diagramas de las secciones 1–3 (esos muestran hasta el alcance del plan Intermedio + el conector). En los planes Mínima e Intermedia la interpretación agronómica la entrega la API de CENICAÑA.</p>
+    <p>El <code>ContextRanker</code> (nodo <code>rank_context</code>, antes de <code>generate</code>) y <code>UsageAnalytics</code> entran desde el plan <strong>Intermedio Plus</strong>. <code>SoilAnalysisInterpreter</code>, <code>DocumentExtractor</code> y <code>IntegrationHook</code> son del plan <strong>Full</strong> y no aparecen en los diagramas de las secciones 1–3 (esos muestran hasta el alcance del plan Intermedio Plus). En los planes Mínima e Intermedia la interpretación agronómica la entrega la API de CENICAÑA, y el asistente redacta con lo que devuelven la API y el corpus, sin la capa de ponderación.</p>
   </section>
 
 </main>
