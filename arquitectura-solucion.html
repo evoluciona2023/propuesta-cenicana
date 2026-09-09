@@ -7,7 +7,7 @@
 <style>body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
-<title>Arquitectura — Asistente de Gestión Agrícola (Plan Intermedia Plus)</title>
+<title>Arquitectura — Asistente de Gestión Agrícola por WhatsApp</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
@@ -144,9 +144,9 @@
 <header class="masthead">
   <div class="inner">
     <div class="brand"><span class="mk" aria-hidden="true"></span><span class="wm">Evo<i>·</i>Tech<i>.</i></span></div>
-    <p class="eyebrow">Arquitectura · Plan Intermedia Plus · CENICAÑA</p>
+    <p class="eyebrow">Arquitectura de componentes · CENICAÑA</p>
     <h1>Arquitectura de componentes</h1>
-    <p class="dek">Descomposición técnica del <strong>plan Intermedia Plus</strong> del asistente de gestión agrícola: un front-end de WhatsApp sobre las APIs de CENICAÑA, un RAG básico sobre la documentación de manejo agronómico y una capa de <strong>ponderación de contexto</strong> antes de redactar, como un solo servicio Python sobre PostgreSQL 16.</p>
+    <p class="dek">Descomposición técnica del asistente de gestión agrícola: un front-end de WhatsApp sobre las APIs de CENICAÑA, un RAG básico sobre la documentación de manejo agronómico y una capa de <strong>ponderación de contexto</strong> antes de redactar, como un solo servicio Python sobre PostgreSQL 16.</p>
     <div class="meta-row">
       <span>Fecha&nbsp; <b>9 sep 2026</b></span>
       <span>Proveedor&nbsp; <b>Evoluciona Tech SAS · EvoTech</b></span>
@@ -158,7 +158,7 @@
       <a href="#grafo">3 · Grafo LangGraph</a>
       <a href="#estado">4 · Estado</a>
       <a href="#traza">5 · Trazabilidad</a>
-      <a href="#fuera">6 · Fuera de este plan</a>
+      <a href="#fuera">6 · Ampliaciones</a>
     </nav>
   </div>
 </header>
@@ -167,11 +167,11 @@
 
   <section id="arq">
     <div class="sec-head"><span class="num">01</span><h2>Arquitectura</h2></div>
-    <p>Un solo contenedor Python (FastAPI + LangGraph) sobre el PostgreSQL que CENICAÑA ya opera. El webhook de WhatsApp entra por HTTPS a través del WAF; las llamadas a las APIs de CENICAÑA salen por la red interna (VPN / IP en allowlist); Claude y Whisper se alcanzan por firewall/WAF saliente. En este plan <strong>el canal es solo WhatsApp</strong>.</p>
+    <p>Un solo contenedor Python (FastAPI + LangGraph) sobre el PostgreSQL que CENICAÑA ya opera. El webhook de WhatsApp entra por HTTPS a través del WAF; las llamadas a las APIs de CENICAÑA salen por la red interna (VPN / IP en allowlist); Claude y Whisper se alcanzan por firewall/WAF saliente. <strong>El canal es solo WhatsApp.</strong></p>
 
     <figure>
       <div class="board">
-        <svg viewBox="0 0 860 452" role="img" aria-label="Arquitectura del plan Intermedia Plus: en la infraestructura de CENICAÑA, el Servicio del Asistente corre sobre PostgreSQL 16; recibe mensajes de WhatsApp y llama por HTTPS a la API de CENICAÑA, a Claude, a Whisper y al recolector de logs.">
+        <svg viewBox="0 0 860 452" role="img" aria-label="Arquitectura: en la infraestructura de CENICAÑA, el Servicio del Asistente corre sobre PostgreSQL 16; recibe mensajes de WhatsApp y llama por HTTPS a la API de CENICAÑA, a Claude, a Whisper y al recolector de logs.">
           <defs>
             <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path d="M0,0 L10,5 L0,10 z" fill="var(--ink-faint)"/>
@@ -180,7 +180,7 @@
 
           <rect class="n-ext" x="300" y="16" width="260" height="46" rx="7"/>
           <text class="t" x="430" y="37" text-anchor="middle" style="font-weight:600">WhatsApp (Meta)</text>
-          <text class="t-sm" x="430" y="52" text-anchor="middle">canal único en este plan</text>
+          <text class="t-sm" x="430" y="52" text-anchor="middle">canal único</text>
 
           <rect class="n-bound" x="30" y="92" width="520" height="332" rx="10"/>
           <text class="t-zone" x="44" y="110">Infraestructura CENICAÑA · Docker Compose</text>
@@ -235,7 +235,7 @@
           <text class="t-lbl" x="198" y="358">chunks + embeddings</text>
         </svg>
       </div>
-      <figcaption><b>Un servicio, un almacén.</b> No hay stack de datos adicional: el <code>pgvector</code> del RAG, los checkpoints, la auditoría y las métricas de uso viven en el mismo PostgreSQL 16 que CENICAÑA ya opera. En este plan no hay caché ni conector a otros canales. La línea troncal de la derecha agrupa el tráfico saliente del servicio hacia los cuatro sistemas externos.</figcaption>
+      <figcaption><b>Un servicio, un almacén.</b> No hay stack de datos adicional: el <code>pgvector</code> del RAG, los checkpoints, la auditoría y las métricas de uso viven en el mismo PostgreSQL 16 que CENICAÑA ya opera. No hay caché ni conector a otros canales. La línea troncal de la derecha agrupa el tráfico saliente del servicio hacia los cuatro sistemas externos.</figcaption>
     </figure>
     <div class="legend">
       <span><span class="sw sw-core"></span> servicio propio</span>
@@ -279,12 +279,12 @@
         </tbody>
       </table>
     </div>
-    <div class="note"><p>Los componentes del plan Full —<code>IntegrationHook</code> y <code>ChannelKeyRepository</code> (conector Telegram/web), <code>ResponseCache</code> (caché), <code>SoilAnalysisInterpreter</code> y <code>DocumentExtractor</code> (interpretación de documentos adjuntos)— <strong>no</strong> forman parte de este plan. Ver la <a href="#fuera">sección 6</a>.</p></div>
+    <div class="note"><p>El conector de integración (<code>IntegrationHook</code>, <code>ChannelKeyRepository</code>), la caché (<code>ResponseCache</code>) y la interpretación de documentos adjuntos (<code>SoilAnalysisInterpreter</code>, <code>DocumentExtractor</code>) <strong>no</strong> forman parte de esta propuesta. Ver la <a href="#fuera">sección 6</a>.</p></div>
   </section>
 
   <section id="grafo">
     <div class="sec-head"><span class="num">03</span><h2>Grafo LangGraph</h2></div>
-    <p>El turno es un grafo de estado. Cinco intenciones salen del <code>router</code>. Lo que produce respuesta con datos pasa por <code>rank_context</code> —la ponderación propia de este plan— antes de <code>generate → guardrails → finalize</code>. <code>no_permiso</code> y <code>fallback</code> van directo a <code>finalize</code>.</p>
+    <p>El turno es un grafo de estado. Cinco intenciones salen del <code>router</code>. Lo que produce respuesta con datos pasa por <code>rank_context</code> —la ponderación de contexto— antes de <code>generate → guardrails → finalize</code>. <code>no_permiso</code> y <code>fallback</code> van directo a <code>finalize</code>.</p>
 
     <figure>
       <div class="board">
@@ -410,7 +410,7 @@
         <tbody>
           <tr><td><code>messages</code></td><td><code>list</code></td><td>Historial del turno</td></tr>
           <tr><td><code>user_id · conversation_id</code></td><td><code>str</code></td><td>Sesión</td></tr>
-          <tr><td><code>channel</code></td><td><code>str</code></td><td><code>whatsapp</code> (canal único en este plan)</td></tr>
+          <tr><td><code>channel</code></td><td><code>str</code></td><td><code>whatsapp</code> (canal único)</td></tr>
           <tr><td><code>phone</code></td><td><code>str</code></td><td>Identificador del usuario; se envía a la API para resolver permisos</td></tr>
           <tr><td><code>language</code></td><td><code>str</code></td><td>Fijado en <code>load_context</code> (español)</td></tr>
           <tr><td><code>intent</code></td><td><code>str | None</code></td><td>Salida del router</td></tr>
@@ -427,7 +427,7 @@
   </section>
 
   <section id="traza">
-    <div class="sec-head"><span class="num">05</span><h2>Trazabilidad con el alcance del plan</h2></div>
+    <div class="sec-head"><span class="num">05</span><h2>Trazabilidad con el alcance de la propuesta</h2></div>
     <div class="twrap">
       <table>
         <thead><tr><th>Requisito</th><th>Componentes</th></tr></thead>
@@ -449,8 +449,8 @@
   </section>
 
   <section id="fuera">
-    <div class="sec-head"><span class="num">06</span><h2>Fuera de este plan</h2></div>
-    <p>El plan Intermedia Plus <strong>no</strong> incluye estos componentes, que son el salto al plan Full:</p>
+    <div class="sec-head"><span class="num">06</span><h2>Ampliaciones posteriores</h2></div>
+    <p>Esta propuesta <strong>no</strong> incluye estos componentes; quedan para una fase posterior:</p>
     <ul class="excl">
       <li><code>IntegrationHook</code> · <code>ChannelKeyRepository</code> — conector de integración a Telegram y a la web (API HTTP con clave de canal)</li>
       <li><code>ResponseCache</code> — caché de corta duración sobre respuestas de la API</li>
@@ -466,8 +466,8 @@
 
 <footer class="end">
   <div class="wrap">
-    <p><b>Arquitectura de componentes — Plan Intermedia Plus</b> · asistente de gestión agrícola por WhatsApp para CENICAÑA · Evoluciona Tech SAS · 9 de septiembre de 2026.</p>
-    <p>Documento técnico. Acompaña a la propuesta del plan Intermedia Plus.</p>
+    <p><b>Arquitectura de componentes</b> · asistente de gestión agrícola por WhatsApp para CENICAÑA · Evoluciona Tech SAS · 9 de septiembre de 2026.</p>
+    <p>Documento técnico. Acompaña a la propuesta.</p>
     <p class="contact">Evoluciona Tech SAS · EvoTech — Palmira, Colombia · comercial@evo-tech.com.co · +57 315 725 9824 · evo-tech.com.co</p>
   </div>
 </footer>
