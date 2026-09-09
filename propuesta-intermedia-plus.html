@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<style>body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Propuesta — Asistente de Gestión Agrícola (Plan Intermedia Plus)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+
+<style>
+  :root{
+    --paper:#FFFFFF; --paper-raised:#FAFAFA; --paper-sunk:#F5F1FA;
+    --ink:#271D2F; --ink-soft:#4E3A5F; --ink-faint:#8B7E99;
+    --line:#EBE4F1; --line-strong:#DAD0E2;
+    --accent:#8743D6; --accent-ink:#6C2FB4; --accent-soft:#F2E9FB;
+    --indigo:#3F3FD9;
+    --green:#4FA829; --green-bright:#6DD93F; --green-soft:#EEF9E6;
+    --grad:linear-gradient(135deg,#8743D6,#3F3FD9);
+    --grad3:linear-gradient(120deg,#8743D6 0%,#3F3FD9 52%,#6DD93F 100%);
+    --dots:radial-gradient(circle, rgba(135,67,214,.07) 1px, transparent 1.6px);
+    --shadow:0 1px 2px rgba(39,29,47,.05),0 12px 34px rgba(39,29,47,.07);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#150F1F; --paper-raised:#1D1629; --paper-sunk:#241B33;
+      --ink:#EFE9F4; --ink-soft:#BCB0C9; --ink-faint:#8E82A0;
+      --line:#322842; --line-strong:#453954;
+      --accent:#A97FE8; --accent-ink:#C6A9F2; --accent-soft:#2A1E3D;
+      --indigo:#6E6EF0;
+      --green:#8BE861; --green-bright:#8BE861; --green-soft:#22301A;
+      --grad:linear-gradient(135deg,#A97FE8,#6E6EF0);
+      --grad3:linear-gradient(120deg,#A97FE8 0%,#6E6EF0 52%,#8BE861 100%);
+      --dots:radial-gradient(circle, rgba(169,127,232,.06) 1px, transparent 1.6px);
+      --shadow:0 1px 2px rgba(0,0,0,.35),0 14px 36px rgba(0,0,0,.42);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#150F1F; --paper-raised:#1D1629; --paper-sunk:#241B33;
+    --ink:#EFE9F4; --ink-soft:#BCB0C9; --ink-faint:#8E82A0;
+    --line:#322842; --line-strong:#453954;
+    --accent:#A97FE8; --accent-ink:#C6A9F2; --accent-soft:#2A1E3D;
+    --indigo:#6E6EF0;
+    --green:#8BE861; --green-bright:#8BE861; --green-soft:#22301A;
+    --grad:linear-gradient(135deg,#A97FE8,#6E6EF0);
+    --grad3:linear-gradient(120deg,#A97FE8 0%,#6E6EF0 52%,#8BE861 100%);
+    --dots:radial-gradient(circle, rgba(169,127,232,.06) 1px, transparent 1.6px);
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 14px 36px rgba(0,0,0,.42);
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size:1.0525rem;line-height:1.7;-webkit-font-smoothing:antialiased}
+
+  .gbar{height:5px;background:var(--grad3)}
+  header.masthead{border-bottom:1px solid var(--line);
+    background:radial-gradient(130% 130% at 12% -20%, var(--accent-soft), transparent 58%), var(--dots) 0 0/22px 22px, var(--paper-raised)}
+  .masthead .inner{max-width:960px;margin:0 auto;padding:clamp(2rem,5vw,3rem) clamp(1.1rem,4vw,2.5rem) clamp(1.8rem,5vw,2.6rem)}
+  .brand{display:flex;align-items:center;gap:.55rem;margin:0 0 1.6rem}
+  .brand .mk{width:24px;height:24px;border-radius:50%;background:var(--grad);flex-shrink:0;box-shadow:0 0 0 4px var(--accent-soft)}
+  .brand .wm{font-weight:700;font-size:1.1rem;letter-spacing:-.01em;color:var(--ink)}
+  .brand .wm i{font-style:normal;color:var(--green-bright)}
+  .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 .9rem}
+  h1{font-weight:700;font-size:clamp(2rem,5.4vw,2.9rem);line-height:1.08;letter-spacing:-.02em;text-wrap:balance;margin:0 0 .8rem;max-width:20ch}
+  h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .dek{font-size:clamp(1.02rem,2.3vw,1.18rem);color:var(--ink-soft);max-width:58ch;margin:0 0 1.9rem}
+  .meta-row{display:flex;flex-wrap:wrap;gap:.5rem 2rem;font-size:.8rem;font-weight:500;color:var(--ink-faint);border-top:1px solid var(--line);padding-top:1.2rem}
+  .meta-row b{color:var(--ink);font-weight:600}
+
+  main{max-width:960px;margin:0 auto;padding:2.6rem clamp(1.1rem,4vw,2.5rem) 4rem}
+  section{padding:2.6rem 0;border-top:1px solid var(--line)}
+  section:first-of-type{border-top:0;padding-top:.8rem}
+  .sec-head{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.1rem}
+  .sec-head .num{font-size:.9rem;font-weight:700;color:var(--accent);padding-top:.15rem}
+  h2{font-weight:600;font-size:clamp(1.4rem,3.3vw,1.7rem);line-height:1.2;letter-spacing:-.01em;margin:0;text-wrap:balance}
+  h3{font-weight:600;font-size:1.05rem;letter-spacing:-.005em;margin:1.8rem 0 .5rem;color:var(--accent-ink)}
+  p{margin:0 0 1rem;max-width:70ch}
+  a{color:var(--accent-ink);text-underline-offset:2px}
+  ul{margin:0 0 1rem;padding-left:1.2rem;max-width:70ch}
+  li{margin:.34rem 0}
+  li::marker{color:var(--accent)}
+  strong{font-weight:600}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--paper-sunk);padding:.06em .38em;border-radius:5px}
+  .lead{font-size:1.14rem;line-height:1.6;color:var(--ink);max-width:62ch}
+
+  .hero{position:relative;margin:1.7rem 0 0;border:2px solid var(--accent);border-radius:16px;padding:1.7rem 1.8rem;
+    background:linear-gradient(var(--paper-raised),var(--paper-raised)) padding-box, var(--grad3) border-box;box-shadow:var(--shadow)}
+  .hero::before{content:"Plan seleccionado";position:absolute;top:-.72rem;left:1.4rem;background:var(--grad);color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.28em .7em;border-radius:999px}
+  .hero .name{font-size:1.35rem;font-weight:700;letter-spacing:-.01em;margin:.1rem 0 .1rem}
+  .hero .price{font-size:2rem;font-weight:700;line-height:1.1;margin:.2rem 0 .1rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .price small{display:block;font-weight:400;font-size:.82rem;color:var(--ink-soft);margin-top:.35rem;-webkit-text-fill-color:var(--ink-soft)}
+  .hero .facts{display:flex;flex-wrap:wrap;gap:.5rem 1.8rem;margin-top:1rem;border-top:1px solid var(--line);padding-top:.9rem;font-size:.82rem;color:var(--ink-soft)}
+  .hero .facts b{color:var(--ink);font-weight:600}
+
+  .callout{background:var(--paper-raised);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:12px;padding:1.4rem 1.6rem;margin:1.2rem 0;box-shadow:var(--shadow)}
+  .callout p:last-child{margin-bottom:0}
+
+  .grid2{display:grid;gap:1rem 1.4rem;grid-template-columns:1fr;margin:1.3rem 0}
+  @media (min-width:720px){.grid2{grid-template-columns:1fr 1fr}}
+  .card{background:var(--paper-raised);border:1px solid var(--line);border-radius:13px;padding:1.2rem 1.3rem;box-shadow:var(--shadow)}
+  .card h3{margin:0 0 .5rem}
+  .card ul{margin:0;padding-left:1.1rem;font-size:.94rem}
+  .card ul li{margin:.28rem 0}
+
+  .twrap{overflow-x:auto;margin:1.3rem 0;border:1px solid var(--line);border-radius:12px;background:var(--paper-raised)}
+  table{width:100%;border-collapse:collapse;font-size:.92rem;min-width:520px}
+  th,td{text-align:left;padding:.7rem .95rem;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper-sunk);border-bottom:1px solid var(--line-strong)}
+  tbody tr:last-child td{border-bottom:0}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .total-row td{font-weight:700;background:var(--accent-soft);border-top:1px solid var(--line-strong)}
+
+  figure{margin:1.7rem 0;padding:0}
+  .board{background:var(--paper-raised);border:1px solid var(--line);border-radius:14px;padding:1.6rem 1.2rem 1.1rem;overflow-x:auto;box-shadow:var(--shadow)}
+  .board svg{display:block;width:100%;min-width:480px;height:auto;color:var(--ink)}
+  figcaption{margin-top:.7rem;font-size:.87rem;color:var(--ink-soft);max-width:72ch}
+  .fb{fill:var(--paper);stroke:var(--line-strong);stroke-width:1.3}
+  .fa{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.5}
+  .ft{fill:var(--ink);font-family:"Poppins",sans-serif;font-size:13px;font-weight:500}
+  .fs{fill:var(--ink-soft);font-family:"Poppins",sans-serif;font-size:10px}
+  .fe{stroke:var(--accent);stroke-width:1.6;fill:none}
+
+  .timeline{display:flex;flex-direction:column;gap:.6rem;margin:1.5rem 0}
+  .timeline .row{display:grid;grid-template-columns:auto 1fr;gap:.9rem;align-items:start}
+  .timeline .m{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);white-space:nowrap;padding-top:.9rem}
+  .timeline .bar{background:var(--paper-raised);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:10px;padding:.75rem 1rem}
+  .timeline .bar b{font-weight:600}
+  .timeline .bar span{display:block;font-size:.88rem;color:var(--ink-soft);margin-top:.15rem}
+
+  .note{background:var(--accent-soft);border:1px solid var(--line-strong);border-color:color-mix(in srgb,var(--accent) 35%,transparent);border-radius:12px;padding:1.3rem 1.6rem;margin:1.4rem 0 0}
+  .note p{margin:0 0 .6rem;max-width:64ch}
+  .note p:last-child{margin-bottom:0}
+  .pill{display:inline-block;font-size:.72rem;font-weight:500;padding:.15em .6em;border-radius:999px;background:var(--green-soft);color:var(--green);white-space:nowrap}
+
+  .excl li::marker{content:"–  ";color:var(--ink-faint)}
+
+  footer.end{border-top:1px solid var(--line);background:var(--paper-raised);padding:2.2rem 0 3rem;font-size:.88rem;color:var(--ink-soft)}
+  footer.end .wrap{max-width:960px;margin:0 auto;padding:0 clamp(1.1rem,4vw,2.5rem)}
+  footer.end b{color:var(--ink)}
+  footer.end .contact{margin-top:.8rem;font-weight:500;color:var(--ink-faint)}
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  @media print{
+    .gbar,.hero::before{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    body{background:#fff;color:#000}
+    .callout,.card,.twrap,.board,.hero{box-shadow:none}
+    section{break-inside:avoid}
+  }
+</style>
+
+<div class="gbar" aria-hidden="true"></div>
+<header class="masthead">
+  <div class="inner">
+    <div class="brand"><span class="mk" aria-hidden="true"></span><span class="wm">Evo<i>·</i>Tech<i>.</i></span></div>
+    <p class="eyebrow">Propuesta seleccionada · CENICAÑA</p>
+    <h1>Asistente de <span class="g">Gestión Agrícola</span> por WhatsApp</h1>
+    <p class="dek">Alcance, entrega y condiciones del <strong>plan Intermedia Plus</strong>, la opción elegida por CENICAÑA.</p>
+    <div class="meta-row">
+      <span>Fecha&nbsp; <b>9 sep 2026</b></span>
+      <span>Proveedor&nbsp; <b>Evoluciona Tech SAS · EvoTech</b></span>
+      <span>Preparado para&nbsp; <b>CENICAÑA</b></span>
+      <span>Vigencia&nbsp; <b>60 días</b></span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section id="plan">
+    <div class="sec-head"><span class="num">01</span><h2>El plan seleccionado</h2></div>
+    <p class="lead">Un asistente conversacional por WhatsApp que responde en lenguaje natural sobre las suertes de caña, apoyado en las APIs de datos de CENICAÑA y en su documentación de manejo agronómico, con una capa de control de calidad antes de cada respuesta.</p>
+
+    <div class="hero">
+      <p class="name">Plan Intermedia Plus</p>
+      <p class="price">COP 17.000.000<small>libre de impuestos · valor cerrado, llave en mano + transferencia</small></p>
+      <div class="facts">
+        <span>Modelo&nbsp; <b>Llave en mano + transferencia</b></span>
+        <span>Soporte de estabilización&nbsp; <b>3 semanas</b></span>
+        <span>Puesta en marcha&nbsp; <b>Sin costo</b></span>
+        <span>Corre en&nbsp; <b>Infraestructura de CENICAÑA</b></span>
+      </div>
+    </div>
+
+    <div class="note">
+      <p><strong>Por qué este plan.</strong> Sobre la base conversacional (WhatsApp, notas de voz, las 3 preguntas base y un bloque de preguntas del catálogo), Intermedia Plus agrega las dos piezas que más impacto tienen en la confianza del usuario: un <strong>sistema de ponderación de contexto</strong> que revisa la información antes de responder, y una <strong>analítica de logs para afinar</strong> el asistente con el uso real.</p>
+      <p>Lo que queda fuera de este plan (conector a Telegram/web, caché, interpretación de documentos adjuntos) se puede incorporar después sin rehacer lo entregado. Ver <a href="#fuera">sección 5</a>.</p>
+    </div>
+  </section>
+
+  <section id="incluye">
+    <div class="sec-head"><span class="num">02</span><h2>Qué incluye</h2></div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Canal</h3>
+        <ul>
+          <li>WhatsApp Business (texto)</li>
+          <li>Notas de voz con transcripción automática (español)</li>
+          <li>Corre sobre la infraestructura de CENICAÑA</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Preguntas</h3>
+        <ul>
+          <li>Las 3 preguntas base definidas por CENICAÑA (detalle en la sección 4)</li>
+          <li>Un bloque de preguntas del catálogo, las que resulten viables con las APIs; el conjunto se cierra en la Fase 0</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Conocimiento</h3>
+        <ul>
+          <li>RAG básico sobre un solo dominio: <strong>manejo agronómico de la caña</strong> (Serie Técnica y cartillas de CENICAÑA)</li>
+          <li>Respuestas con cita de la fuente</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Calidad de la respuesta</h3>
+        <ul>
+          <li><strong>Sistema de ponderación de contexto</strong>: antes de redactar, el asistente puntúa y pondera lo recuperado (API + documentación) por relevancia y frescura, y decide con qué responde o si pide precisar</li>
+          <li>El asistente nunca inventa: solo entrega lo que la API o el corpus devuelven</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Permisos y cumplimiento</h3>
+        <ul>
+          <li>Permisos por teléfono, delegados a la API de CENICAÑA + mensaje «sin permiso»</li>
+          <li>Auditoría de todas las preguntas y respuestas</li>
+          <li>Habeas data (Ley 1581/2012): consentimiento, baja y borrado</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Operación y mejora</h3>
+        <ul>
+          <li>Logs de operación en el formato que consume la herramienta de CENICAÑA</li>
+          <li><strong>Analítica de uso para afinamiento</strong>: tablero de métricas (volumen, temas frecuentes, tasa de «no sé») y ciclo de ajuste del router, la ponderación y el corpus</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Entrega</h3>
+    <ul>
+      <li>Sistema desplegado y operando en la infraestructura de CENICAÑA</li>
+      <li>Código fuente en propiedad de CENICAÑA</li>
+      <li>Documentación técnica y de operación</li>
+      <li>Capacitación al equipo que operará la solución</li>
+      <li>Período de soporte de estabilización de 3 semanas tras el paso a producción</li>
+    </ul>
+  </section>
+
+  <section id="funciona">
+    <div class="sec-head"><span class="num">03</span><h2>Cómo funciona</h2></div>
+    <figure>
+      <div class="board">
+        <svg viewBox="0 0 720 300" role="img" aria-label="El ingenio o el cultivador escribe o habla por WhatsApp; el asistente entiende la pregunta con un modelo de lenguaje, consulta las APIs de CENICAÑA o su documentación de manejo agronómico, pondera lo recuperado y redacta la respuesta.">
+          <defs>
+            <marker id="fm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/>
+            </marker>
+          </defs>
+          <rect class="fb" x="24" y="118" width="164" height="56" rx="9"/>
+          <text class="ft" x="106" y="141" text-anchor="middle">Ingenio / Cultivador</text>
+          <text class="fs" x="106" y="158" text-anchor="middle">WhatsApp · texto o voz</text>
+
+          <rect class="fa" x="256" y="96" width="180" height="72" rx="10"/>
+          <text class="ft" x="346" y="120" text-anchor="middle" style="font-weight:600">Asistente</text>
+          <text class="fs" x="346" y="138" text-anchor="middle">entiende la pregunta,</text>
+          <text class="fs" x="346" y="152" text-anchor="middle">pondera y arma la respuesta</text>
+
+          <rect class="fb" x="256" y="200" width="180" height="50" rx="9"/>
+          <text class="ft" x="346" y="222" text-anchor="middle">Modelo de lenguaje</text>
+          <text class="fs" x="346" y="238" text-anchor="middle">interpreta y redacta</text>
+
+          <rect class="fb" x="516" y="70" width="180" height="52" rx="9"/>
+          <text class="ft" x="606" y="92" text-anchor="middle">APIs de CENICAÑA</text>
+          <text class="fs" x="606" y="108" text-anchor="middle">datos de la suerte</text>
+
+          <rect class="fb" x="516" y="156" width="180" height="52" rx="9"/>
+          <text class="ft" x="606" y="178" text-anchor="middle">Documentación</text>
+          <text class="fs" x="606" y="194" text-anchor="middle">de manejo agronómico</text>
+
+          <path class="fe" d="M190,144 L252,144" marker-end="url(#fm)" marker-start="url(#fm)"/>
+          <text class="fs" x="221" y="136" text-anchor="middle">pregunta</text>
+          <text class="fs" x="221" y="162" text-anchor="middle">respuesta</text>
+          <path class="fe" d="M346,168 L346,198" marker-end="url(#fm)" marker-start="url(#fm)"/>
+          <path class="fe" d="M438,122 L512,100" marker-end="url(#fm)"/>
+          <path class="fe" d="M438,150 L512,176" marker-end="url(#fm)"/>
+        </svg>
+      </div>
+      <figcaption>El asistente nunca inventa: solo entrega lo que las APIs de CENICAÑA o su documentación devuelven, y cita la fuente. Un modelo de lenguaje (Claude) entiende la pregunta y redacta la respuesta; su consumo <strong>durante el desarrollo lo cubre Evoluciona Tech</strong>. Los permisos los resuelve CENICAÑA con la relación de teléfonos que ya tiene.</figcaption>
+    </figure>
+
+    <h3>Ponderación de contexto</h3>
+    <p>Antes de redactar, el asistente <strong>puntúa y pondera</strong> lo que recuperó —datos de la API y fragmentos de la documentación— por relevancia, frescura y coincidencia con la pregunta. Con ese puntaje decide qué usa, en qué orden y si tiene base suficiente para responder o debe pedir que reformulen. Baja la tasa de respuestas imprecisas o fuera de contexto.</p>
+
+    <h3>Logs y afinamiento</h3>
+    <p>El asistente emite <strong>logs de operación</strong> en el formato que consume la herramienta de CENICAÑA. Esos registros de preguntas y respuestas se revisan periódicamente para <strong>afinar</strong> el asistente: ajustar el router de intención, la ponderación de contexto y el corpus del RAG. Incluye un tablero simple de métricas de uso.</p>
+  </section>
+
+  <section id="preguntas">
+    <div class="sec-head"><span class="num">04</span><h2>Preguntas</h2></div>
+
+    <h3>Preguntas base (definidas por CENICAÑA)</h3>
+    <div class="twrap">
+      <table>
+        <thead><tr><th>Pregunta del usuario</th><th>La respuesta trae</th></tr></thead>
+        <tbody>
+          <tr><td>«Dame la información de la suerte donde estoy ubicado»</td><td>variedad, edad, producción anterior, necesidad de riego y lo demás que exponga la API</td></tr>
+          <tr><td>«¿Cuál es la transitabilidad de la hacienda X, suerte Y?»</td><td>% de transitabilidad + interpretación + enlace al GEOPDF</td></tr>
+          <tr><td>«¿Debo regar hoy en mi hacienda?»</td><td>qué suertes y cuánta LARA (lámina de agua rápidamente aprovechable) tienen</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Bloque del catálogo</h3>
+    <p>Sobre las 3 base, este plan habilita un <strong>bloque</strong> de las siguientes preguntas: las que resulten viables con las APIs de CENICAÑA. El conjunto y el orden de implementación se cierran en la Fase 0, tras verificar qué expone cada operación. Una pregunta que resulte no viable queda pendiente hasta que CENICAÑA habilite el dato, sin costo adicional.</p>
+    <div class="twrap">
+      <table>
+        <thead><tr><th>Pregunta candidata</th><th>Tema</th></tr></thead>
+        <tbody>
+          <tr><td>Edad de la suerte y fecha de siembra</td><td>estado del lote</td></tr>
+          <tr><td>Producción (TCH) de la última cosecha</td><td>productividad</td></tr>
+          <tr><td>Suertes de la hacienda próximas a cosecha</td><td>planeación de corte</td></tr>
+          <tr><td>Mapa (GEOPDF) de la suerte</td><td>cartografía</td></tr>
+          <tr><td>Lluvia de la semana en la hacienda</td><td>clima · agua</td></tr>
+          <tr><td>Balance hídrico de la hacienda</td><td>agua en el suelo</td></tr>
+          <tr><td>Suertes con restricción de transitabilidad hoy</td><td>física del suelo</td></tr>
+          <tr><td>Recomendación de fertilización de la suerte</td><td>fertilidad del suelo</td></tr>
+          <tr><td>Alerta fitosanitaria (Diatraea, roya) en la zona</td><td>sanidad</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="fuera">
+    <div class="sec-head"><span class="num">05</span><h2>Qué no incluye este plan</h2></div>
+    <p>Para dejar claro el alcance, estas capacidades <strong>no</strong> forman parte del plan Intermedia Plus:</p>
+    <ul class="excl">
+      <li><strong>Conector de integración</strong> a Telegram y a la web (el asistente vive solo en WhatsApp)</li>
+      <li><strong>Caché de respuestas</strong> de la API</li>
+      <li><strong>Interpretación de un documento adjunto</strong> (por ejemplo, un análisis de laboratorio)</li>
+      <li><strong>Pruebas de carga</strong> formales</li>
+      <li><strong>Evaluación de calidad con set de preguntas doradas</strong> y endurecimiento completo</li>
+    </ul>
+    <div class="note">
+      <p><strong>Ruta de ampliación.</strong> Todo lo anterior es el salto al plan Full o a una fase posterior. El núcleo (grafo, servicio de conversación, ponderación, repositorios) queda listo para recibirlo <strong>sin rehacer nada</strong> de lo entregado.</p>
+    </div>
+  </section>
+
+  <section id="inversion">
+    <div class="sec-head"><span class="num">06</span><h2>Inversión</h2></div>
+    <div class="twrap">
+      <table>
+        <thead><tr><th>Concepto</th><th class="num">COP (libre de impuestos)</th></tr></thead>
+        <tbody>
+          <tr class="total-row"><td>Construcción del plan Intermedia Plus — valor cerrado, llave en mano</td><td class="num">17 000 000</td></tr>
+          <tr><td>Puesta en marcha (habilitar WhatsApp Business, cuentas de servicio)</td><td class="num">sin costo</td></tr>
+          <tr><td>Soporte de estabilización — 3 semanas tras producción</td><td class="num">incluido</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>El valor es el <strong>total del plan</strong>, no se desagrega por actividad. Pago sugerido contra hitos de entrega. El cronograma en firme se acuerda al cierre de la Fase 0.</p>
+
+    <h3>Consumo de las APIs de IA</h3>
+    <p>El asistente usa servicios pagos por uso: el modelo de lenguaje (Claude) y la transcripción de voz. <strong>Durante el desarrollo, ese consumo lo asume Evoluciona Tech.</strong> Desde el piloto y en producción lo asume CENICAÑA, con pago directo a los proveedores; al volumen esperado (del orden de 5 000 consultas/mes) es un costo bajo, que se dimensiona en la Fase 0.</p>
+
+    <h3>Soporte</h3>
+    <p>El plan incluye 3 semanas de soporte de estabilización tras el paso a producción, para correctivos y ajuste fino. Terminado ese período, la transferencia está completa: CENICAÑA opera de forma autónoma con el código fuente, la documentación y la capacitación entregados. Esta propuesta <strong>no</strong> incluye soporte recurrente posterior.</p>
+  </section>
+
+  <section id="entrega">
+    <div class="sec-head"><span class="num">07</span><h2>Cómo se entrega</h2></div>
+    <p><strong>Modelo llave en mano + transferencia.</strong> CENICAÑA recibe el sistema desplegado y operando en su infraestructura, el código fuente en propiedad, la documentación y la capacitación. Después opera de forma autónoma.</p>
+    <div class="timeline">
+      <div class="row"><span class="m">Fase 0</span><div class="bar"><b>Descubrimiento y diseño fino</b><span>Sesión técnica con CENICAÑA · mapeo de las APIs · selección de documentos para el corpus · cierre del bloque de preguntas · criterios de la ponderación de contexto.</span></div></div>
+      <div class="row"><span class="m">Fase 1</span><div class="bar"><b>Piloto funcional</b><span>El asistente con el alcance del plan, funcionando en el ambiente de pruebas de CENICAÑA. Primeros ajustes de la ponderación y del corpus con datos reales.</span></div></div>
+      <div class="row"><span class="m">Fase 2</span><div class="bar"><b>Producción y transferencia</b><span>Endurecimiento, integración con la operación de CENICAÑA, paso a producción, tablero de métricas, capacitación y entrega formal. Arranca el soporte de estabilización.</span></div></div>
+    </div>
+    <p>El cronograma en firme se acuerda al cierre de la Fase 0.</p>
+  </section>
+
+  <section id="retorno">
+    <div class="sec-head"><span class="num">08</span><h2>Retorno esperado</h2></div>
+    <div class="twrap">
+      <table>
+        <thead><tr><th>Beneficio</th><th>Estimación</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Tiempo del equipo técnico liberado</strong></td><td>Con ~5 000 consultas/mes y el asistente absorbiendo 60–70 % de las de primer nivel (~5 min cada una de un profesional), se liberan del orden de <strong>200–350 horas/mes</strong> ≈ 0,5–1 persona de tiempo completo.</td></tr>
+          <tr><td><strong>Respuestas más confiables</strong></td><td>La ponderación de contexto reduce las respuestas imprecisas o fuera de contexto; la analítica de afinamiento hace que el asistente mejore mes a mes con el uso real.</td></tr>
+          <tr><td><strong>Decisiones de campo más oportunas</strong></td><td>Transitabilidad y riego respondidos al instante y 24/7 → menos maquinaria atascada, menos compactación del suelo, mejor programación del agua.</td></tr>
+          <tr><td><strong>Cobertura</strong></td><td>Asesoría de primer nivel para proveedores pequeños que hoy no la reciben.</td></tr>
+          <tr><td><strong>Activo de datos</strong></td><td>Registro de qué se pregunta, dónde y cuándo → insumo para priorizar investigación y extensión.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>Recuperación de la inversión:</strong> valorando el tiempo técnico liberado a un costo cargado modesto, del orden de <strong>5–10 meses</strong>.</p>
+  </section>
+
+  <section id="riesgos">
+    <div class="sec-head"><span class="num">09</span><h2>Riesgos y cómo se manejan</h2></div>
+    <div class="twrap">
+      <table>
+        <thead><tr><th>Riesgo</th><th>Manejo</th></tr></thead>
+        <tbody>
+          <tr><td>Las APIs de CENICAÑA requieren más ajuste del previsto (trabajo de CENICAÑA)</td><td>Se dimensiona en la Fase 0 con el equipo de CENICAÑA; el bloque de preguntas se ajusta a lo que las APIs ya exponen, y la Fase 0 se cierra antes de comprometer el alcance.</td></tr>
+          <tr><td>CENICAÑA no autoriza enviar datos a servicios externos (Claude / Whisper)</td><td>Se evalúa en la Fase 0 la alternativa alojada en CENICAÑA; el diseño deja esos componentes intercambiables. Los datos personales van cifrados y anonimizados; los proveedores no entrenan con datos de la API.</td></tr>
+          <tr><td>Baja adopción de los usuarios</td><td>Lanzamiento acompañado, mensajes claros y arranque con un grupo piloto de haciendas.</td></tr>
+          <tr><td>Continuidad (dependencia del proveedor)</td><td>Modelo llave en mano + transferencia: código, documentación y capacitación quedan en CENICAÑA desde el cierre del proyecto.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="equipo">
+    <div class="sec-head"><span class="num">10</span><h2>Equipo y responsabilidades</h2></div>
+    <div class="twrap">
+      <table>
+        <thead><tr><th>Rol</th><th>Aporta</th></tr></thead>
+        <tbody>
+          <tr><td>Evoluciona Tech SAS — líder técnico / IA</td><td>Diseño, orquestación del asistente, ponderación de contexto, integración con Claude</td></tr>
+          <tr><td>Evoluciona Tech SAS — desarrollador backend</td><td>Servicio, cliente de las APIs de CENICAÑA, RAG, despliegue, tablero de métricas</td></tr>
+          <tr><td>CENICAÑA — responsable de las APIs</td><td>Documentación y ajustes de las APIs, usuario técnico, ambientes</td></tr>
+          <tr><td>CENICAÑA — aprobador de seguridad y datos</td><td>Autorización de egreso de datos, política de auditoría y retención</td></tr>
+          <tr><td>CENICAÑA — agrónomo / contenido</td><td>Selección y curación de la documentación de manejo agronómico y validación de respuestas</td></tr>
+          <tr><td>CENICAÑA — operación (TI)</td><td>Infraestructura, red, integración de logs y respaldos</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="condiciones">
+    <div class="sec-head"><span class="num">11</span><h2>Condiciones y supuestos</h2></div>
+    <ul>
+      <li>CENICAÑA provee servidor (ya disponible), acceso de red para el webhook y para alcanzar las APIs de CENICAÑA, y habilita el número de WhatsApp Business.</li>
+      <li>Las tres operaciones base de la API existen; los ajustes de parámetros y de estructura de respuesta son responsabilidad de CENICAÑA.</li>
+      <li>CENICAÑA define y entrega la documentación de manejo agronómico para el corpus del asistente.</li>
+      <li>Se acuerda en la Fase 0 la política de egreso de datos a servicios externos y la de auditoría y retención.</li>
+      <li>El valor de construcción es cerrado y <strong>libre de impuestos</strong>.</li>
+      <li>Vigencia de la oferta: 60 días. El cronograma se confirma al cierre de la Fase 0.</li>
+    </ul>
+  </section>
+
+  <section id="decision">
+    <div class="sec-head"><span class="num">12</span><h2>Próximo paso</h2></div>
+    <div class="note">
+      <p><strong>1.</strong> Confirmar el plan Intermedia Plus.</p>
+      <p><strong>2.</strong> Agendar la sesión técnica de 45 minutos con el responsable de las APIs, el aprobador de seguridad y datos, y la persona que operará la solución.</p>
+      <p><strong>3.</strong> Con eso, Evoluciona Tech SAS entrega el plan de trabajo detallado de la Fase 0 y el contrato.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="end">
+  <div class="wrap">
+    <p><b>Asistente de Gestión Agrícola por WhatsApp — Plan Intermedia Plus</b> · propuesta de Evoluciona Tech SAS para CENICAÑA · 9 de septiembre de 2026.</p>
+    <p>Documento de decisión. El valor de construcción es cerrado y libre de impuestos; el cronograma se acuerda al cierre de la Fase 0. Acompaña a la arquitectura de componentes del plan Intermedia Plus.</p>
+    <p class="contact">Evoluciona Tech SAS · EvoTech — Palmira, Colombia · comercial@evo-tech.com.co · +57 315 725 9824 · evo-tech.com.co</p>
+  </div>
+</footer>
+
+</body>
+</html>
