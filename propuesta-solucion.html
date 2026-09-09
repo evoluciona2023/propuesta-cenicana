@@ -190,7 +190,7 @@
 
     <div class="note">
       <p><strong>En resumen.</strong> Sobre la base conversacional (WhatsApp, notas de voz, las 3 preguntas base y un bloque de preguntas del catálogo), la solución agrega las dos piezas que más impacto tienen en la confianza del usuario: un <strong>sistema de ponderación de contexto</strong> que revisa la información antes de responder, y una <strong>analítica de logs para afinar</strong> el asistente con el uso real.</p>
-      <p>Lo que queda fuera de esta propuesta (conector a Telegram/web, caché, interpretación de documentos adjuntos) se puede incorporar más adelante sin rehacer lo entregado. Ver <a href="#fuera">sección 5</a>.</p>
+      <p>Lo que queda fuera de esta propuesta (conector a Telegram/web, caché, interpretación de documentos adjuntos) se puede incorporar más adelante sin rehacer lo entregado.</p>
     </div>
   </section>
 
@@ -338,23 +338,8 @@
     </div>
   </section>
 
-  <section id="fuera">
-    <div class="sec-head"><span class="num">05</span><h2>Qué no incluye esta propuesta</h2></div>
-    <p>Para dejar claro el alcance, estas capacidades <strong>no</strong> forman parte de esta propuesta:</p>
-    <ul class="excl">
-      <li><strong>Conector de integración</strong> a Telegram y a la web (el asistente vive solo en WhatsApp)</li>
-      <li><strong>Caché de respuestas</strong> de la API</li>
-      <li><strong>Interpretación de un documento adjunto</strong> (por ejemplo, un análisis de laboratorio)</li>
-      <li><strong>Pruebas de carga</strong> formales</li>
-      <li><strong>Evaluación de calidad con set de preguntas doradas</strong> y endurecimiento completo</li>
-    </ul>
-    <div class="note">
-      <p><strong>Ruta de ampliación.</strong> Todo lo anterior se puede incorporar en una fase posterior. El núcleo (grafo, servicio de conversación, ponderación, repositorios) queda listo para recibirlo <strong>sin rehacer nada</strong> de lo entregado.</p>
-    </div>
-  </section>
-
   <section id="inversion">
-    <div class="sec-head"><span class="num">06</span><h2>Inversión</h2></div>
+    <div class="sec-head"><span class="num">05</span><h2>Inversión</h2></div>
     <div class="twrap">
       <table>
         <thead><tr><th>Concepto</th><th class="num">COP (libre de impuestos)</th></tr></thead>
@@ -375,7 +360,7 @@
   </section>
 
   <section id="entrega">
-    <div class="sec-head"><span class="num">07</span><h2>Cómo se entrega</h2></div>
+    <div class="sec-head"><span class="num">06</span><h2>Cómo se entrega</h2></div>
     <p><strong>Modelo llave en mano + transferencia.</strong> CENICAÑA recibe el sistema desplegado y operando en su infraestructura, el código fuente en propiedad, la documentación y la capacitación. Después opera de forma autónoma.</p>
     <div class="timeline">
       <div class="row"><span class="m">Fase 0</span><div class="bar"><b>Descubrimiento y diseño fino</b><span>Sesión técnica con CENICAÑA · mapeo de las APIs · selección de documentos para el corpus · cierre del bloque de preguntas · criterios de la ponderación de contexto.</span></div></div>
@@ -386,7 +371,7 @@
   </section>
 
   <section id="retorno">
-    <div class="sec-head"><span class="num">08</span><h2>Retorno esperado</h2></div>
+    <div class="sec-head"><span class="num">07</span><h2>Retorno esperado</h2></div>
     <div class="twrap">
       <table>
         <thead><tr><th>Beneficio</th><th>Estimación</th></tr></thead>
@@ -403,7 +388,7 @@
   </section>
 
   <section id="riesgos">
-    <div class="sec-head"><span class="num">09</span><h2>Riesgos y cómo se manejan</h2></div>
+    <div class="sec-head"><span class="num">08</span><h2>Riesgos y cómo se manejan</h2></div>
     <div class="twrap">
       <table>
         <thead><tr><th>Riesgo</th><th>Manejo</th></tr></thead>
@@ -418,7 +403,7 @@
   </section>
 
   <section id="equipo">
-    <div class="sec-head"><span class="num">10</span><h2>Equipo y responsabilidades</h2></div>
+    <div class="sec-head"><span class="num">09</span><h2>Equipo y responsabilidades</h2></div>
     <div class="twrap">
       <table>
         <thead><tr><th>Rol</th><th>Aporta</th></tr></thead>
@@ -435,7 +420,7 @@
   </section>
 
   <section id="condiciones">
-    <div class="sec-head"><span class="num">11</span><h2>Condiciones y supuestos</h2></div>
+    <div class="sec-head"><span class="num">10</span><h2>Condiciones y supuestos</h2></div>
     <ul>
       <li>CENICAÑA provee servidor (ya disponible), acceso de red para el webhook y para alcanzar las APIs de CENICAÑA, y habilita el número de WhatsApp Business.</li>
       <li>Las tres operaciones base de la API existen; los ajustes de parámetros y de estructura de respuesta son responsabilidad de CENICAÑA.</li>
@@ -447,7 +432,7 @@
   </section>
 
   <section id="decision">
-    <div class="sec-head"><span class="num">12</span><h2>Próximo paso</h2></div>
+    <div class="sec-head"><span class="num">11</span><h2>Próximo paso</h2></div>
     <div class="note">
       <p><strong>1.</strong> Confirmar el alcance de esta propuesta.</p>
       <p><strong>2.</strong> Agendar la sesión técnica de 45 minutos con el responsable de las APIs, el aprobador de seguridad y datos, y la persona que operará la solución.</p>
